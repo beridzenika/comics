@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,500&family=Noto+Sans+Georgian:wght@400;600;800&family=Noto+Serif+Georgian:wght@800&display=swap');
+
+@import 'mixins';
+
+$white: #ffffff;
+$gray: #3b7979;
+$primary: #00ffff;
+$black: #000000;
+$p-font: 'Noto Sans Georgian', sans-serif;
+$s-font: 'Noto Serif Georgian', serif;
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: $p-font;
+
+    .logo{
+        font-size: 22;
+        padding: 10px 0;
+        font-weight: 800;
+        :first-child {
+            font-family: 'Lora', serif;
+            font-family: $s-font;             
+            color: $primary;
+            font-style: italic;
+            text-decoration: none;
+        }
+        :last-child {
+            color: $white;
+            font-style: normal;
+        }
+    }
+
+    header{
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
+        padding: 10px;
+        align-items: center;
+        border-bottom: solid 2px $gray;
+        background-color: $black;
+
+        .right-h{
+            padding-right: 20px;
+            .search {
+                form{
+                    display: flex;
+                    input{
+                        font-family: $p-font;
+                        color: $white;
+                        padding: 5px;
+                        width: 90%;
+                        border: solid $gray 1px;
+                        border-radius: 5px;
+                        background-color: transparent;
+                    }
+                    button {
+                        border: none;
+                        background-color: transparent;
+                        margin: 5px 10px;
+                        color: $gray;
+                        &:hover {
+                            color: $white;
+                            transition: 0.2s;
+                        }
+                    }
+                }
+            }
+            .login{
+                margin: 20px 10px 10px;
+                a{
+                    text-decoration: none;
+                    color: $gray;
+                    font-weight: 600;
+                    padding: 5px;
+                    border: solid $gray 1px;
+                    border-radius: 5px;
+                    &:hover {
+                        color: $white; 
+                        border: solid $white 1px;
+                        transition: 0.2s;
+                    }
+                }
+            }
+        }
+    }
+
+    main{
+        margin: 50px auto;
+        width: 90%;
+        h2{
+            margin: 20px auto 40px;
+            font-size: 26px;
+            font-weight: bolder;
+            display: inline-block;
+        }
+        a, button{
+            @include button();
+            &:hover {
+                background-color: #296e61;
+                transition: 0.2s;
+            }
+        }
+        .comic-container{
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 18px 0px #e3e3e3bf;
+            width: 100%;
+            .comic-box{
+                margin: 10px;
+                td{
+                    padding: 10px;
+                }
+                img{
+                    height: 100px;
+                }
+                .title{
+                    font-weight: 800;
+                }
+                .active{
+                    @include button();
+                }
+                .inactive{
+                    @include button($gray);
+                }
+                .actions{
+                    align-items: center;
+                    height: 100px;
+                    a{
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        form{
+            display: flex;
+            justify-content: space-between;
+            .left-grid{
+                width: 40%;
+            }
+            .right-grid{
+                width: 60%;
+            }
+            .form-group{
+                margin: 10px;
+                .image{
+                    width: 100%;
+                    background-repeat: no-repeat;
+                    background-size: cover !important;
+                    height: calc(100% - 270px);
+                    background-position: center;
+                    background: $gray;
+                }
+                label{
+                    display: block;
+                    font-size: 16px;
+                    padding: 10px 0;
+                    font-weight: 800;
+                }
+                input, textarea, select{    
+                    padding: 10px;
+                    border: 1px solid $gray;
+                    border-radius: 5px;
+                    font-family: $p-font;
+                    width: 100%;
+                }
+                button{
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width:600px) {
+        .right-h{
+            display: flex;
+            align-items: baseline;
+        }
+        .actions{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    @media only screen and (max-width:900px) {
+        .actions{
+            a, button{
+                padding: 10px;
+            } 
+        }
+    }
+    @media only screen and (max-width:599px) {
+        .actions{
+            button{
+                margin-top: 15px;
+            } 
+        }
+    }
+    
+}

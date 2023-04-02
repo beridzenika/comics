@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,500&family=Noto+Sans+Georgian:wght@400;600;800&family=Noto+Serif+Georgian:wght@800&display=swap');
+
+$white: #ffffff;
+$gray: #3c4c5e;
+$primary: #00ffff;
+$black: #09141b;
+$p-font: 'Noto Sans Georgian', sans-serif;
+$s-font: 'Noto Serif Georgian', serif;
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: $p-font;
+
+    .logo{
+        font-size: 22;
+        padding: 10px 0;
+        font-weight: 800;
+        :first-child {
+            font-family: 'Lora', serif;
+            font-family: $s-font;             
+            color: $primary;
+            font-style: italic;
+            text-decoration: none;
+        }
+        :last-child {
+            color: $white;
+            font-style: normal;
+        }
+    }
+
+    header{
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
+        padding: 10px;
+        align-items: center;
+        border-bottom: solid 2px $gray;
+        background-color: $black;
+
+        .right-h{
+            padding-right: 20px;
+            .search {
+                form{
+                    display: flex;
+                    input{
+                        font-family: $p-font;
+                        color: $white;
+                        padding: 5px;
+                        width: 90%;
+                        border: solid $gray 1px;
+                        border-radius: 5px;
+                        background-color: transparent;
+                    }
+                    button {
+                        border: none;
+                        background-color: transparent;
+                        margin: 5px 10px;
+                        color: $gray;
+                        &:hover {
+                            color: $white;
+                            transition: 0.2s;
+                        }
+                    }
+                }
+            }
+            .login{
+                margin: 20px 10px 10px;
+                a{
+                    text-decoration: none;
+                    color: $gray;
+                    font-weight: 600;
+                    padding: 5px;
+                    border: solid $gray 1px;
+                    border-radius: 5px;
+                    &:hover {
+                        color: $white; 
+                        border: solid $white 1px;
+                        transition: 0.2s;
+                    }
+                }
+            }
+        }
+    }
+
+    main{
+        margin: 50px auto;
+        width: 90%;
+        h2{
+            margin: 20px auto;
+            font-size: 26px;
+            font-weight: bolder;
+        }
+        .comic-container{
+            display: grid;
+            grid-gap: 25px;
+            width: initial;
+            .comic-box{
+                text-align: center;
+                display: inline-block;
+                img{
+                    width: 100%;
+                    box-shadow: -1px 3px 12px 2px rgba(0,0,0,0.59);
+                    &:hover {
+                        transition: 0.2s;
+                        box-shadow: none;
+                    }
+                }
+                .text{
+                    margin-top: 10px;
+                    border-top: $gray solid 1px;
+                    padding: 5px 0px;
+                    & :hover{
+                        color: $primary;
+                    }
+                    a{
+                        text-decoration: none;
+                        color: $black;
+                        font-weight: 800;
+                    }
+                }
+            }
+        }
+    }
+
+    footer{
+        margin: auto;
+        padding: 10px 10%;
+        align-items: center;
+        background-color: $black;
+        .container{
+            display: flex;
+            justify-content: space-between;
+            .logo{
+                span{
+                    display: block;
+                }
+            }
+            .follow{
+                h4{
+                    color: $white;
+                    font-weight: 600;
+                    padding: 15px;
+                }
+                a{
+                    text-decoration: none;
+                    color: $gray;
+                    padding: 5px;
+                    &:hover {
+                        color: $white; 
+                        transition: 0.2s;
+                    }
+                    svg{
+                        padding: 10px 0;
+                    }
+                }
+            }
+        }
+        .copy-right{
+            color: $gray;
+            text-align: center;
+            border-top: $gray 1px solid;
+            padding: 10px;
+            margin: 10px 50px;
+        }
+    }
+
+
+    
+    // .shadow {
+    //     top: 0px;
+    //     bottom: 0px;
+    //     left: 0px;
+    //     right: 0px;
+    //     position: fixed;
+    //     background: rgba(0, 0, 0, 0.199);
+    //     z-index: 1;
+        
+    // }
+
+    // .pop-up {
+    //     width: 1000px;
+    //     padding: 50px;
+    //     border-radius: 10px;
+    //     margin: 130px;
+    //     position: fixed;
+    //     top: 0px;
+    //     background-color: #FFFFFF;
+    //     z-index: 2;
+    // }
+
+
+    @media only screen and (min-width:600px) {
+        .right-h{
+            display: flex;
+            align-items: baseline;
+        }
+    }
+    @media only screen and (min-width:1000px) {
+        .comic-container{
+            grid-template-columns: repeat(5,1fr);
+        }
+    }
+    @media only screen and (max-width:1000px) {
+        .comic-container{
+            grid-template-columns: repeat(4,1fr);
+        }
+    }
+    @media only screen and (max-width:800px) {
+        .comic-container{
+            grid-template-columns: repeat(3,1fr);
+        }
+    }
+    @media only screen and (max-width:600px) {
+        .comic-container{
+            grid-template-columns: repeat(2,1fr);
+            width: 100%;
+        }
+    }
+    @media only screen and (max-width:400px) {
+        .comic-container{
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+}

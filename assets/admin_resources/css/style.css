@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,500&family=Noto+Sans+Georgian:wght@400;600;800&family=Noto+Serif+Georgian:wght@800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans Georgian", sans-serif;
+}
+
+body .logo {
+  font-size: 22;
+  padding: 10px 0;
+  font-weight: 800;
+}
+
+body .logo :first-child {
+  font-family: 'Lora', serif;
+  font-family: "Noto Serif Georgian", serif;
+  color: #00ffff;
+  font-style: italic;
+  text-decoration: none;
+}
+
+body .logo :last-child {
+  color: #ffffff;
+  font-style: normal;
+}
+
+body header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: auto;
+  padding: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: solid 2px #3b7979;
+  background-color: #000000;
+}
+
+body header .right-h {
+  padding-right: 20px;
+}
+
+body header .right-h .search form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body header .right-h .search form input {
+  font-family: "Noto Sans Georgian", sans-serif;
+  color: #ffffff;
+  padding: 5px;
+  width: 90%;
+  border: solid #3b7979 1px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+body header .right-h .search form button {
+  border: none;
+  background-color: transparent;
+  margin: 5px 10px;
+  color: #3b7979;
+}
+
+body header .right-h .search form button:hover {
+  color: #ffffff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+body header .right-h .login {
+  margin: 20px 10px 10px;
+}
+
+body header .right-h .login a {
+  text-decoration: none;
+  color: #3b7979;
+  font-weight: 600;
+  padding: 5px;
+  border: solid #3b7979 1px;
+  border-radius: 5px;
+}
+
+body header .right-h .login a:hover {
+  color: #ffffff;
+  border: solid #ffffff 1px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+body main {
+  margin: 50px auto;
+  width: 90%;
+}
+
+body main h2 {
+  margin: 20px auto 40px;
+  font-size: 26px;
+  font-weight: bolder;
+  display: inline-block;
+}
+
+body main a, body main button {
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  background-color: #00ffff;
+  border-radius: 5px;
+  color: white;
+  font-family: "Noto Sans Georgian", sans-serif;
+}
+
+body main a:hover, body main button:hover {
+  background-color: #296e61;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+body main .comic-container {
+  padding: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 0px 18px 0px #e3e3e3bf;
+          box-shadow: 0px 0px 18px 0px #e3e3e3bf;
+  width: 100%;
+}
+
+body main .comic-container .comic-box {
+  margin: 10px;
+}
+
+body main .comic-container .comic-box td {
+  padding: 10px;
+}
+
+body main .comic-container .comic-box img {
+  height: 100px;
+}
+
+body main .comic-container .comic-box .title {
+  font-weight: 800;
+}
+
+body main .comic-container .comic-box .active {
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  background-color: #00ffff;
+  border-radius: 5px;
+  color: white;
+  font-family: "Noto Sans Georgian", sans-serif;
+}
+
+body main .comic-container .comic-box .inactive {
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  background-color: #3b7979;
+  border-radius: 5px;
+  color: white;
+  font-family: "Noto Sans Georgian", sans-serif;
+}
+
+body main .comic-container .comic-box .actions {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100px;
+}
+
+body main .comic-container .comic-box .actions a {
+  margin-right: 10px;
+}
+
+body main form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body main form .left-grid {
+  width: 40%;
+}
+
+body main form .right-grid {
+  width: 60%;
+}
+
+body main form .form-group {
+  margin: 10px;
+}
+
+body main form .form-group .image {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  height: calc(100% - 270px);
+  background-position: center;
+  background: #3b7979;
+}
+
+body main form .form-group label {
+  display: block;
+  font-size: 16px;
+  padding: 10px 0;
+  font-weight: 800;
+}
+
+body main form .form-group input, body main form .form-group textarea, body main form .form-group select {
+  padding: 10px;
+  border: 1px solid #3b7979;
+  border-radius: 5px;
+  font-family: "Noto Sans Georgian", sans-serif;
+  width: 100%;
+}
+
+body main form .form-group button {
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+  body .right-h {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+  }
+  body .actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  body .actions a, body .actions button {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  body .actions button {
+    margin-top: 15px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

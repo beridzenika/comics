@@ -1,0 +1,16 @@
+<main>
+    <h2>კომიქსები</h2>
+    <div class="comic-container">
+        <?php foreach($books as $book): ?>
+        <div class="comic-box">
+            <a href="comic.php?id=<?= $book['id'] ?>"><img src="<?=$book['image']?>" alt=""></a>
+            <div class="text">
+                <a href="comic.php?id=<?= $book['id'] ?>">
+                    <span class="title"><?=$book['title']?></span>
+                </a>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+        
+</main>

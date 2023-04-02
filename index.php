@@ -1,7 +1,7 @@
 <?php include('helpers/db_connection.php') ?>
 
 <?php
-//search
+//search 123
 if(isset($_GET['search']) && $_GET['search']) {
     $search_value = $_GET['search'];
     $titleLike = "AND title LIKE '%" . $search_value . "%'";

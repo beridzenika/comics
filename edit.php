@@ -1,45 +1,38 @@
-<?php include('helpers/db_connection.php') ?>
+<?php 
+include('helpers/db_connection.php');
+include('helpers/functions.php');
 
-<?php
 
-    $id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null; 
-    
-    if($id) {
-        // select
-        $select_query = "SELECT * FROM books WHERE id = " . $id;
+$id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null; 
 
-        $result = mysqli_query($conn, $select_query);
-        $book = mysqli_fetch_assoc($result);
-
-        if(!$book) {
-            die('student not found');
-        }
-    } else {
-        die('invalid id');
+// select
+if($id) {
+    $select_query = $connection->query("SELECT * FROM books WHERE id = " . $id);
+    $book = $select_query->fetch_assoc();
+    if(!$book) {
+        die('Error 404');
     }
+} else {
+    die('invalid id');
+}
 
-    // update
-    if(isset($_POST['action']) && $_POST['action'] == 'update') {
-        $title = isset($_POST['title']) ? $_POST['title'] : '' ;
-        $published = isset($_POST['published']) ? $_POST['published'] : '' ;
-        $writer = isset($_POST['writer']) ? $_POST['writer'] : '' ;
-        $artist = isset($_POST['artist']) ? $_POST['artist'] : '' ;
-        $description = isset($_POST['description']) ? $_POST['description'] : '' ;
-        $image = isset($_POST['image']) ? $_POST['image'] : '' ;
-        $status = isset($_POST['status']) ? $_POST['status'] : '' ;
+// update
+if(isset($_POST['action']) && $_POST['action'] == 'update') {
+    list($title, $published, $writer, $artist, $description, $image, $status) = actionData($connection);
 
-        if($title && $published && $writer && $artist && $description && $image) {
+    if($title && $published && $writer && $artist && $description && $image) {
 
-            $sql = "UPDATE books SET title = '$title', published = '$published', writer = '$writer', artist = '$artist', description = '$description', image = '$image', status = '$status' WHERE id = ".$id;
-
-            if(mysqli_query($conn, $sql)) {
-                header('Location: admin.php');
-            } else {
-                echo "Error";
-            }
+        $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ? WHERE id = ?");
+        $query->bind_param('ssssssss',$title, $published, $writer, $artist, $description, $image, $status, $id);
+        print_r($query);
+        if($query->execute()) {
+            header('Location: admin.php');
+        } else {
+            print_r($connection->error);
+            echo "Error";
         }
     }
-
+}
 ?>
 
 <html lang="en">
@@ -90,8 +83,8 @@
                     <div class="form-group">
                         <label for="">სტატუსი</label>
                         <select name="status" id="">
-                            <option value="1" <?php echo $book['status'] == 1 ? 'selected' : '' ?>>მოქმედი</option>
-                            <option value="0" <?php echo $book['status'] == 0 ? 'selected' : '' ?>>უმოქმედო</option>
+                            <option value="1" <?= $book['status'] == 1 ? 'selected' : '' ?>>მოქმედი</option>
+                            <option value="0" <?= $book['status'] == 0 ? 'selected' : '' ?>>უმოქმედო</option>
                         </select>
                     </div>
                     <div class="form-group">

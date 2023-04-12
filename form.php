@@ -1,28 +1,24 @@
-<?php include('helpers/db_connection.php') ?>
+<?php 
+include('helpers/db_connection.php');
+include('helpers/functions.php');
 
-<?php
-    // insert
-    if(isset($_POST['action']) && $_POST['action'] == 'insert') {
-        $title = isset($_POST['title']) ? $_POST['title'] : '' ;
-        $published = isset($_POST['published']) ? $_POST['published'] : '' ;
-        $writer = isset($_POST['writer']) ? $_POST['writer'] : '' ;
-        $artist = isset($_POST['artist']) ? $_POST['artist'] : '' ;
-        $description = isset($_POST['description']) ? $_POST['description'] : '' ;
-        $image = isset($_POST['image']) ? $_POST['image'] : '' ;
-        $status = isset($_POST['status']) ? $_POST['status'] : '' ;
 
-        if($title && $published && $writer && $artist && $description && $image) {
+// insert
+if(isset($_POST['action']) && $_POST['action'] == 'insert') {
+    list($title, $published, $writer, $artist, $description, $image, $status) = actionData($connection);
 
-            $sql = "INSERT INTO `books`(`title`, `published`, `writer`, `artist`, `description`, `image`, `status`) VALUES ('$title', '$published', '$writer', '$artist', '$description', '$image',  '$status')";
-            
-            if(mysqli_query($conn, $sql)) {
-                header('Location: admin.php');
-            } else {
-                echo "Error";
-            }
+    if($title && $published && $writer && $artist && $description && $image) {
+
+        $query = $connection->prepare("INSERT INTO `books` (`title`, `published`, `writer`, `artist`, `description`, `image`, `status`) VALUES (?,?,?,?,?,?,?)");
+        $query->bind_param('sssssss',$title, $published, $writer, $artist, $description, $image, $status);
+        if($query->execute()) {
+            header('Location: admin.php');
+        } else {
+            print_r($connection->error);
+            echo "Error";
         }
     }
-
+}
 ?>
 
 <html lang="en">
@@ -46,7 +42,7 @@
                     <div class="form-group">
                         <div class="image" style="background-image: url('<?= $book['image'] ?>');"></div>
                         <label for="">ყდა</label>
-                        <textarea name="image" id="" cols="30" rows="10"></textarea>
+                        <textarea name="image" cols="30" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="right-grid">
@@ -79,9 +75,33 @@
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="action" value="insert">
-                        <button class="btn submit">დაამატე</button>
+                        <button class="btn submit">ატვირთვა</button>
                     </div>
                 </div>
+            </form>
+        </div>
+        <div class="container-header">
+            <h2>გვერდები</h2>
+            <a href="form.php" class="btn">გვერდის დამატება</a>
+        </div>
+        <div class="page-container">
+            <form action="" method="post">
+                <table>
+                    <tr class="comic-box">
+                        <td>1</td>
+                        <td><div class="image" style="background-image: url('<?= $book['image'] ?>');"></div></td>
+                        <td><textarea name="image" rows="7"></textarea></td>
+                        
+                        <td class="actions">
+                            <form action="" method="post">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="id" value="<?= $book['id'] ?>">
+                                <button class="delete" onclick="return confirm('მართლა გინდა წაშლა?')">წაშლა</button>
+                            </form>
+                            <button class="btn submit">ატვირთვა</button>
+                        </td>
+                    </tr>
+                </table>
             </form>
         </div>
     </main>

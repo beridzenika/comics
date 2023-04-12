@@ -1,29 +1,23 @@
-<?php include('helpers/db_connection.php') ?>
+<?php 
+include('helpers/db_connection.php');
+include('helpers/functions.php');
 
-<?php
+
 //delete
 if(isset($_POST['action']) && $_POST['action'] == 'delete') {
     $id = $_POST['id'];
 
-    $sql = "DELETE FROM books where id = " .$id;
+    $query = $connection->query("DELETE FROM books where id = " .$id);
 
-    if(mysqli_query($conn, $sql)) {
+    if($query) {
     } else {
         echo "Error";
     }
 }
-//search
-if(isset($_GET['search']) && $_GET['search']) {
-    $search_value = $_GET['search'];
-    $titleLike = "WHERE title LIKE '%" . $search_value . "%'";
-} else {
-    $titleLike = '';
-}
 
 //select
-$sql = "SELECT * FROM books " . ($titleLike ? $titleLike : '') . " ORDER BY books.id DESC";
-$result = mysqli_query($conn, $sql);
-$books = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$query = $connection->query("SELECT * FROM books " . search("WHERE") . " ORDER BY books.id DESC");
+$books = $query->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -37,7 +31,6 @@ $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </head>
 <body>
     <?php include('components/header.php')?>
-
     <main>
         <div class="container-header">
             <h2>კომიქსები</h2>

@@ -1,3 +1,9 @@
+@mixin header() {
+    margin: auto;
+    padding: 10px;
+    border-bottom: solid 1px $gray;
+    background-color: $black;
+}
 @mixin button($bg: $primary) {
     font-size: 16px;
     text-decoration: none;
@@ -6,5 +12,17 @@
     background-color: $bg;
     border-radius: 5px;
     color: white;
+    font-family: $p-font;
+}
+@mixin bg_image() {
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center;
+    background: $primary;
+}
+@mixin input() {
+    padding: 10px;
+    border: 1px solid $gray;
+    border-radius: 5px;
     font-family: $p-font;
 }

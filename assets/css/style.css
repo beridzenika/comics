@@ -17,7 +17,7 @@ body .logo {
 body .logo :first-child {
   font-family: 'Lora', serif;
   font-family: "Noto Serif Georgian", serif;
-  color: #00ffff;
+  color: #3fd5c1;
   font-style: italic;
   text-decoration: none;
 }
@@ -33,17 +33,20 @@ body header {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  margin: auto;
-  padding: 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: solid 2px #3c4c5e;
+  margin: auto;
+  padding: 10px;
+  border-bottom: solid 1px #3c4c5e;
   background-color: #09141b;
 }
 
 body header .right-h {
-  padding-right: 20px;
+  width: 30%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 body header .right-h .search form {
@@ -76,7 +79,7 @@ body header .right-h .search form button:hover {
 }
 
 body header .right-h .login {
-  margin: 20px 10px 10px;
+  margin: 20px 0px;
 }
 
 body header .right-h .login a {
@@ -93,6 +96,44 @@ body header .right-h .login a:hover {
   border: solid #ffffff 1px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+}
+
+body menu {
+  margin: auto;
+  padding: 10px;
+  border-bottom: solid 1px #3c4c5e;
+  background-color: #09141b;
+}
+
+body menu ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto 20%;
+}
+
+body menu ul li {
+  display: block;
+}
+
+body menu ul li a {
+  text-decoration: none;
+  color: #3c4c5e;
+}
+
+body menu ul li a:hover {
+  color: #ffffff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+body menu ul .active a {
+  color: #ffffff;
 }
 
 body main {
@@ -138,7 +179,7 @@ body main .comic-container .comic-box .text {
 }
 
 body main .comic-container .comic-box .text :hover {
-  color: #00ffff;
+  color: #3fd5c1;
 }
 
 body main .comic-container .comic-box .text a {

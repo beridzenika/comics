@@ -17,7 +17,7 @@ body .logo {
 body .logo :first-child {
   font-family: 'Lora', serif;
   font-family: "Noto Serif Georgian", serif;
-  color: #00ffff;
+  color: #3fd5c1;
   font-style: italic;
   text-decoration: none;
 }
@@ -33,17 +33,20 @@ body header {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  margin: auto;
-  padding: 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: solid 2px #3b7979;
+  margin: auto;
+  padding: 10px;
+  border-bottom: solid 1px #3b7979;
   background-color: #000000;
 }
 
 body header .right-h {
-  padding-right: 20px;
+  width: 30%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 body header .right-h .search form {
@@ -76,7 +79,7 @@ body header .right-h .search form button:hover {
 }
 
 body header .right-h .login {
-  margin: 20px 10px 10px;
+  margin: 20px 0px;
 }
 
 body header .right-h .login a {
@@ -93,6 +96,44 @@ body header .right-h .login a:hover {
   border: solid #ffffff 1px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+}
+
+body menu {
+  margin: auto;
+  padding: 10px;
+  border-bottom: solid 1px #3b7979;
+  background-color: #000000;
+}
+
+body menu ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto 20%;
+}
+
+body menu ul li {
+  display: block;
+}
+
+body menu ul li a {
+  text-decoration: none;
+  color: #3b7979;
+}
+
+body menu ul li a:hover {
+  color: #ffffff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+body menu ul .active a {
+  color: #ffffff;
 }
 
 body main {
@@ -112,7 +153,7 @@ body main a, body main button {
   text-decoration: none;
   border: none;
   padding: 10px 20px;
-  background-color: #00ffff;
+  background-color: #3fd5c1;
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
@@ -124,7 +165,7 @@ body main a:hover, body main button:hover {
   transition: 0.2s;
 }
 
-body main .comic-container {
+body main .comic-container, body main .page-container {
   padding: 15px;
   border-radius: 15px;
   -webkit-box-shadow: 0px 0px 18px 0px #e3e3e3bf;
@@ -132,34 +173,68 @@ body main .comic-container {
   width: 100%;
 }
 
-body main .comic-container .comic-box {
+body main .page-container table {
+  width: 100%;
+}
+
+body main .page-container table .comic-box {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .page-container table .comic-box textarea {
+  padding: 10px;
+  border: 1px solid #3b7979;
+  border-radius: 5px;
+  font-family: "Noto Sans Georgian", sans-serif;
+  width: 700px;
+}
+
+body main .page-container table .comic-box .actions {
+  display: block;
+}
+
+body main .page-container table .comic-box .actions button {
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+}
+
+body main .comic-box {
   margin: 10px;
 }
 
-body main .comic-container .comic-box td {
+body main .comic-box td {
   padding: 10px;
 }
 
-body main .comic-container .comic-box img {
+body main .comic-box img {
   height: 100px;
 }
 
-body main .comic-container .comic-box .title {
+body main .comic-box .title {
   font-weight: 800;
 }
 
-body main .comic-container .comic-box .active {
+body main .comic-box .active {
   font-size: 16px;
   text-decoration: none;
   border: none;
   padding: 10px 20px;
-  background-color: #00ffff;
+  background-color: #3fd5c1;
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
 }
 
-body main .comic-container .comic-box .inactive {
+body main .comic-box .inactive {
   font-size: 16px;
   text-decoration: none;
   border: none;
@@ -170,15 +245,24 @@ body main .comic-container .comic-box .inactive {
   font-family: "Noto Sans Georgian", sans-serif;
 }
 
-body main .comic-container .comic-box .actions {
+body main .comic-box .actions {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   height: 100px;
 }
 
-body main .comic-container .comic-box .actions a {
+body main .comic-box .actions a {
   margin-right: 10px;
+}
+
+body main .comic-box .image {
+  width: 100px;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center;
+  background: #3fd5c1;
 }
 
 body main form {
@@ -204,11 +288,11 @@ body main form .form-group {
 
 body main form .form-group .image {
   width: 100%;
+  height: calc(100% - 270px);
   background-repeat: no-repeat;
   background-size: cover !important;
-  height: calc(100% - 270px);
   background-position: center;
-  background: #3b7979;
+  background: #3fd5c1;
 }
 
 body main form .form-group label {

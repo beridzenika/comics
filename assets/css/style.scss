@@ -2,10 +2,13 @@
 
 $white: #ffffff;
 $gray: #3c4c5e;
-$primary: #00ffff;
+$primary: #3fd5c1;
 $black: #09141b;
 $p-font: 'Noto Sans Georgian', sans-serif;
 $s-font: 'Noto Serif Georgian', serif;
+
+@import 'mixins';
+
 *{
     margin: 0;
     padding: 0;
@@ -29,18 +32,15 @@ body{
             font-style: normal;
         }
     }
-
     header{
         display: flex;
         justify-content: space-around;
-        margin: auto;
-        padding: 10px;
         align-items: center;
-        border-bottom: solid 2px $gray;
-        background-color: $black;
+        @include header();
 
         .right-h{
-            padding-right: 20px;
+            width: 30%;
+            justify-content: space-between;
             .search {
                 form{
                     display: flex;
@@ -66,7 +66,7 @@ body{
                 }
             }
             .login{
-                margin: 20px 10px 10px;
+                margin: 20px 0px;
                 a{
                     text-decoration: none;
                     color: $gray;
@@ -79,6 +79,31 @@ body{
                         border: solid $white 1px;
                         transition: 0.2s;
                     }
+                }
+            }
+        }
+    }
+    menu{
+        @include header();
+        ul{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: auto 20%;
+            li{
+                display: block;
+                a{
+                    text-decoration: none;
+                    color: $gray;
+                    &:hover{
+                        color: $white;
+                        transition: 0.2s;
+                    }
+                }
+            }
+            .active{
+                a{
+                    color: $white;
                 }
             }
         }

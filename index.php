@@ -1,19 +1,26 @@
-<?php include('helpers/db_connection.php') ?>
+<?php 
+include('helpers/db_connection.php');
+include('helpers/functions.php');
 
-<?php
-//search 123
-if(isset($_GET['search']) && $_GET['search']) {
-    $search_value = $_GET['search'];
-    $titleLike = "AND title LIKE '%" . $search_value . "%'";
-} else {
-    $titleLike = '';
+//sort
+$SortType = isset($_GET['sort']) && $_GET['sort'] ? $_GET['sort'] : 0;
+$sortBy = GetSortBy($SortType);
+
+//paging
+$limit = 3;
+$offset = '';
+if(isset($_GET['page']) && $_GET['page'] && $_GET['page'] > 1) {
+    $offset = ' OFFSET ' . ($_GET['page'] - 1) * $limit;
 }
+$total = $connection->query("SELECT COUNT(*) as cnt FROM books");
+$count = $total->fetch_assoc();
+
+$pageNumber = ceil($count['cnt'] / $limit);
 
 //select
-$sql = "SELECT * FROM books WHERE status = 1 " . ($titleLike ? $titleLike : '') . " ORDER BY books.id DESC";
-$result = mysqli_query($conn, $sql);
-$books = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+// $query = $connection->query("SELECT * FROM books WHERE status = 1 " . search("AND") . "ORDER BY books.id DESC");
+$query = $connection->query("SELECT * FROM books WHERE status = 1 " . search("AND") . "ORDER BY ".$sortBy ." LIMIT ". $limit ."". $offset);
+$books = $query->fetch_all(MYSQLI_ASSOC);
 ?>
 
 
@@ -29,14 +36,27 @@ $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <body>
     
     <?php include('components/header.php')?>
-    <!-- <?php include('login.php') ?> -->
 
+    <form action="">
+        <div class="form-group">
+            <select name="sort" id="" onchange="this.form.submit()">
+                <option value="0" <?=$SortType == "0" ? "selected" : "" ?>>თარიღი კლებადობით</option>
+                <option value="1" <?=$SortType == "1" ? "selected" : "" ?>>თაროღი მატობით</option>
+                <option value="2" <?=$SortType == "2" ? "selected" : "" ?>>სათაური კლებადობით</option>
+                <option value="3" <?=$SortType == "3" ? "selected" : "" ?>>სათაური მატობით</option>
+                <option value="4" <?=$SortType == "4" ? "selected" : "" ?>>ფასი კლებადობით</option>
+                <option value="5" <?=$SortType == "5" ? "selected" : "" ?>>ფასი მატობით</option>
+            </select>
+        </div>
+    </form>
     <main>
         <h2>კომიქსები</h2>
         <div class="comic-container">
             <?php foreach($books as $book): ?>
             <div class="comic-box">
-                <a href="comic.php?id=<?= $book['id'] ?>"><img src="<?=$book['image']?>" alt=""></a>
+                <a href="comic.php?id=<?= $book['id'] ?>">
+                    <img src="<?=$book['image']?>" alt="">
+                </a>
                 <div class="text">
                     <a href="comic.php?id=<?= $book['id'] ?>">
                         <span class="title"><?=$book['title']?></span>
@@ -45,8 +65,13 @@ $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
             </div>
             <?php endforeach; ?>
         </div>
-        
     </main>
+
+    <div class="paging">
+        <?php for($i = 1; $i <= $pageNumber; $i++): ?>
+            <a href="?page=<?= $i ?>&sort=<?= $SortType ?>" class="btn"><?= $i ?></a>
+        <?php endfor; ?>
+    </div>
 
 
     <?php include('components/footer.php')?>

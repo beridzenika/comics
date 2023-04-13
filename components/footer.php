@@ -20,5 +20,6 @@
     <div class="copy-right">
         &copy;2023 chabukis komiqsebi
     </div>
-
 </footer>
+
+<script src="assets/js/script.js"></script>

@@ -75,7 +75,5 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
 
 
     <?php include('components/footer.php')?>
-
-    <script src="assets/js/script.js"></script>
 </body>
 </html>

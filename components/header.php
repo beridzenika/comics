@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+$log = empty($_SESSION) ? "1" : "2";
+?>
 <header>
     <div class="logo">
         <a href="http://localhost/comics/">
@@ -14,7 +19,11 @@
         </div>
 
         <div class="login">
-            <a href="login.php">შემოსვლა</a>
+            <?php if ($log == "2"): ?>
+                <a href="logout.php" id="logout">გამოსვლა</a>
+            <?php else: ?>
+                <a href="login.php">შემოსვლა</a>
+            <?php endif ?>
         </div>
     </div>
 </header>

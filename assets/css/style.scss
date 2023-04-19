@@ -4,8 +4,11 @@ $white: #ffffff;
 $gray: #3c4c5e;
 $primary: #3fd5c1;
 $black: #09141b;
+
 $p-font: 'Noto Sans Georgian', sans-serif;
 $s-font: 'Noto Serif Georgian', serif;
+
+$shadow: 0px 0px 18px 0px #e3e3e3bf;
 
 @import 'mixins';
 
@@ -145,6 +148,46 @@ body{
                         font-weight: 800;
                     }
                 }
+            }
+        }
+    }
+
+    .login-contianer {
+        display: flex;
+        justify-content: center;
+        .content {
+            width: 400px;
+            margin: 80px auto;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: $shadow;
+            .form-group, .form-group-btn, h2 {
+                margin: 10px;
+                label{
+                    display: block;
+                    font-size: 16px;
+                    font-weight: 800;
+                }
+                input{
+                    @include input();
+                    width: 100%;
+                    margin: 10px 0;
+                }
+            }
+            .form-group-btn {
+                display: flex;
+                justify-content: space-between;
+            }
+            a, button{
+                @include button();
+                &:hover {
+                    background-color: $gray;
+                    transition: 0.2s;
+                }
+            }
+            .error{
+                color: #cc0c0c;
+                font-weight: bold;
             }
         }
     }

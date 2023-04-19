@@ -1,26 +1,38 @@
-let popUp = document.getElementById('popUp');
-let worning = document.getElementById('worning');
+// let popUp = document.getElementById('popUp');
+// let worning = document.getElementById('worning');
+let logout = document.getElementById("logout");
 
-document.getElementById('openerBtn').addEventListener('click', function() {
-    if (popUp.style.display="none") {
-        popUp.style.display="block";
+function confirmation(e){
+    let con = confirm('დარწმუნებული ხარ?');
+    if(con==false){
+        e.preventDefault();
     }
-});
+}
 
-document.getElementById('closeBtn').addEventListener('click', function() {
-    if (popUp.style.display="block") {
-        popUp.style.display="none";
-    }
-});
-document.getElementById('submitBtn').addEventListener('click', function() {
-    let inputValue = document.getElementById('formInput');
-    if (inputValue.value == "") {
-        worning.style.display="block";
-    }
-    else{
-        if (worning.style.display="block") {
-            worning.style.display="none";
-        }
-    }
 
-});
+if (logout){
+    logout.addEventListener("click", confirmation);
+}
+// document.getElementById('openerBtn').addEventListener('click', function() {
+//     if (popUp.style.display="none") {
+//         popUp.style.display="block";
+//     }
+// });
+//
+// document.getElementById('closeBtn').addEventListener('click', function() {
+//     if (popUp.style.display="block") {
+//         popUp.style.display="none";
+//     }
+// });
+// document.getElementById('submitBtn').addEventListener('click', function() {
+//     let inputValue = document.getElementById('formInput');
+//     if (inputValue.value == "") {
+//         worning.style.display="block";
+//     }
+//     else{
+//         if (worning.style.display="block") {
+//             worning.style.display="none";
+//         }
+//     }
+//
+// });

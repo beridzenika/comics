@@ -4,3 +4,19 @@
     border-bottom: solid 1px $gray;
     background-color: $black;
 }
+@mixin input() {
+    padding: 10px;
+    border: 1px solid $gray;
+    border-radius: 5px;
+    font-family: $p-font;
+}
+@mixin button($bg: $primary) {
+    font-size: 16px;
+    text-decoration: none;
+    border: none;
+    padding: 10px 20px;
+    background-color: $bg;
+    border-radius: 5px;
+    color: white;
+    font-family: $p-font;
+}

@@ -8,7 +8,6 @@ include 'helpers/functions.php';
 
 $error = '';
 if(isset($_POST['action']) && $_POST['action'] == 'login') {
-    $username = isset($_POST['username']) && $_POST['username'] != '' ? $_POST['username'] : null;
     $email = isset($_POST['email']) && $_POST['email'] != '' ? $_POST['email'] : null; 
     $password = isset($_POST['password']) && $_POST['password'] != '' ? $_POST['password'] : null; 
 
@@ -17,7 +16,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
         $user = $query->fetch_assoc();
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                $_SESSION['username'] = $username;
+                $_SESSION['username'] = $user['username'];
                 $_SESSION['logedin'] = true;
 
                 if ($user['is_admin']) {
@@ -52,31 +51,28 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
     <div class="login-contianer">
         <div class="content">
             <form class="form-login" action="" method="POST">
-                    <div class="form-group">
-                        <label for="">სახელი</label>
-                        <input type="text" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="">მეილი</label>
-                        <input type="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="">პაროლი</label>
-                        <input type="password" name="password">
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" name="action" value="login">
-                        <button class="btn">შემოსვლა</button>
-                        <a class="signin-btn" href="signin.php">რეგისტრაცია</a>
-                    </div>
-                    <div>
-                        <?php 
-                            if($error) {
-                                echo $error;
-                            }
-                        ?>
-                    </div>
-                </form>
+                <h2>შემოსვლა</h2>
+                <div class="form-group">
+                    <label for="">მეილი</label>
+                    <input type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>">
+                </div>
+                <div class="form-group">
+                    <label for="">პაროლი</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="form-group-btn">
+                    <input type="hidden" name="action" value="login">
+                    <button class="btn">შემოსვლა</button>
+                    <a class="signin-btn" href="signin.php">რეგისტრაცია</a>
+                </div>
+                <div class="error">
+                    <?php 
+                        if($error) {
+                            echo $error;
+                        }
+                    ?>
+                </div>
+            </form>
         </div>
     </div>
     

@@ -7,54 +7,38 @@
 body {
   font-family: "Noto Sans Georgian", sans-serif;
 }
-
 body .logo {
   font-size: 22;
   padding: 10px 0;
   font-weight: 800;
 }
-
 body .logo :first-child {
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   font-family: "Noto Serif Georgian", serif;
   color: #3fd5c1;
   font-style: italic;
   text-decoration: none;
 }
-
 body .logo :last-child {
   color: #ffffff;
   font-style: normal;
 }
-
 body header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-around;
+  align-items: center;
   margin: auto;
   padding: 10px;
   border-bottom: solid 1px #3b7979;
-  background-color: #000000;
+  background-color: #0c0c0c;
 }
-
 body header .right-h {
   width: 30%;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 body header .right-h .search form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 body header .right-h .search form input {
   font-family: "Noto Sans Georgian", sans-serif;
   color: #ffffff;
@@ -64,24 +48,19 @@ body header .right-h .search form input {
   border-radius: 5px;
   background-color: transparent;
 }
-
 body header .right-h .search form button {
   border: none;
   background-color: transparent;
   margin: 5px 10px;
   color: #3b7979;
 }
-
 body header .right-h .search form button:hover {
   color: #ffffff;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
-
 body header .right-h .login {
   margin: 20px 0px;
 }
-
 body header .right-h .login a {
   text-decoration: none;
   color: #3b7979;
@@ -90,64 +69,47 @@ body header .right-h .login a {
   border: solid #3b7979 1px;
   border-radius: 5px;
 }
-
 body header .right-h .login a:hover {
   color: #ffffff;
   border: solid #ffffff 1px;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
-
 body menu {
   margin: auto;
   padding: 10px;
   border-bottom: solid 1px #3b7979;
-  background-color: #000000;
+  background-color: #0c0c0c;
 }
-
 body menu ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-around;
+  align-items: center;
   margin: auto 20%;
 }
-
 body menu ul li {
   display: block;
 }
-
 body menu ul li a {
   text-decoration: none;
   color: #3b7979;
 }
-
 body menu ul li a:hover {
   color: #ffffff;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
-
 body menu ul .active a {
   color: #ffffff;
 }
-
 body main {
   margin: 50px auto;
   width: 90%;
 }
-
 body main h2 {
   margin: 20px auto 40px;
   font-size: 26px;
   font-weight: bolder;
   display: inline-block;
 }
-
 body main a, body main button {
   font-size: 16px;
   text-decoration: none;
@@ -158,37 +120,25 @@ body main a, body main button {
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
 }
-
 body main a:hover, body main button:hover {
-  background-color: #296e61;
-  -webkit-transition: 0.2s;
+  background-color: #3b7979;
   transition: 0.2s;
 }
-
 body main .comic-container, body main .page-container {
   padding: 15px;
   border-radius: 15px;
-  -webkit-box-shadow: 0px 0px 18px 0px #e3e3e3bf;
-          box-shadow: 0px 0px 18px 0px #e3e3e3bf;
+  box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
   width: 100%;
 }
-
 body main .page-container table {
   width: 100%;
 }
-
 body main .page-container table .comic-box {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   width: 100%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 body main .page-container table .comic-box textarea {
   padding: 10px;
   border: 1px solid #3b7979;
@@ -196,33 +146,27 @@ body main .page-container table .comic-box textarea {
   font-family: "Noto Sans Georgian", sans-serif;
   width: 700px;
 }
-
-body main .page-container table .comic-box .actions {
-  display: block;
-}
-
 body main .page-container table .comic-box .actions button {
-  margin-bottom: 15px;
-  display: block;
   width: 100%;
 }
-
+body main .form-sub button {
+  width: 100%;
+  margin: 20px 15px;
+  font-size: larger;
+  box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
+}
 body main .comic-box {
   margin: 10px;
 }
-
 body main .comic-box td {
   padding: 10px;
 }
-
 body main .comic-box img {
   height: 100px;
 }
-
 body main .comic-box .title {
   font-weight: 800;
 }
-
 body main .comic-box .active {
   font-size: 16px;
   text-decoration: none;
@@ -233,7 +177,6 @@ body main .comic-box .active {
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
 }
-
 body main .comic-box .inactive {
   font-size: 16px;
   text-decoration: none;
@@ -244,18 +187,13 @@ body main .comic-box .inactive {
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
 }
-
 body main .comic-box .actions {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   height: 100px;
 }
-
 body main .comic-box .actions a {
   margin-right: 10px;
 }
-
 body main .comic-box .image {
   width: 100px;
   height: 150px;
@@ -264,28 +202,19 @@ body main .comic-box .image {
   background-position: center;
   background: #3fd5c1;
 }
-
 body main form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 body main form .left-grid {
   width: 40%;
 }
-
 body main form .right-grid {
   width: 60%;
 }
-
 body main form .form-group {
   margin: 10px;
 }
-
 body main form .form-group .image {
   width: 100%;
   height: calc(100% - 270px);
@@ -294,14 +223,12 @@ body main form .form-group .image {
   background-position: center;
   background: #3fd5c1;
 }
-
 body main form .form-group label {
   display: block;
   font-size: 16px;
   padding: 10px 0;
   font-weight: 800;
 }
-
 body main form .form-group input, body main form .form-group textarea, body main form .form-group select {
   padding: 10px;
   border: 1px solid #3b7979;
@@ -309,39 +236,26 @@ body main form .form-group input, body main form .form-group textarea, body main
   font-family: "Noto Sans Georgian", sans-serif;
   width: 100%;
 }
-
 body main form .form-group button {
   margin-top: 20px;
 }
-
 @media only screen and (min-width: 600px) {
   body .right-h {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    align-items: baseline;
   }
   body .actions {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
   }
 }
-
 @media only screen and (max-width: 900px) {
   body .actions a, body .actions button {
     padding: 10px;
   }
 }
-
 @media only screen and (max-width: 599px) {
   body .actions button {
     margin-top: 15px;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

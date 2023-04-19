@@ -37,7 +37,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
             <h2>კომიქსი</h2>
         </div>
         <div class="comic-container">
-            <form action="" method="post">
+            <form action="" id="comicForm" method="post">
                 <div class="left-grid">
                     <div class="form-group">
                         <div class="image" style="background-image: url('<?= $book['image'] ?>');"></div>
@@ -75,34 +75,26 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="action" value="insert">
-                        <button class="btn submit">ატვირთვა</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="container-header">
             <h2>გვერდები</h2>
-            <a href="form.php" class="btn">გვერდის დამატება</a>
+            <a class="btn" id="pageBtn">დამატება</a>
         </div>
         <div class="page-container">
-            <form action="" method="post">
-                <table>
-                    <tr class="comic-box">
-                        <td>1</td>
-                        <td><div class="image" style="background-image: url('<?= $book['image'] ?>');"></div></td>
-                        <td><textarea name="image" rows="7"></textarea></td>
-                        
-                        <td class="actions">
-                            <form action="" method="post">
-                                <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="id" value="<?= $book['id'] ?>">
-                                <button class="delete" onclick="return confirm('მართლა გინდა წაშლა?')">წაშლა</button>
-                            </form>
-                            <button class="btn submit">ატვირთვა</button>
-                        </td>
-                    </tr>
+            <form action="" id="pageForm" method="post">
+                <table id="comics-images">
                 </table>
+                <div class="form-group">
+                    <input type="hidden" name="action" value="insert">
+                </div>
             </form>
+        </div>
+        <div class="form-sub" id="formSub">
+            <input type="hidden" name="action" value="insert">
+            <button class="btn submit">ატვირთვა</button>
         </div>
     </main>
     

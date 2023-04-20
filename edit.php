@@ -50,8 +50,8 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
         <div class="container-header">
             <h2>კომიქსი #<?= $book['id'] ?></h2>
         </div>
-        <div class="comic-container">
-            <form action="" method="post">
+        <form action="" method="post">
+            <div class="comic-container">
                 <div class="left-grid">
                     <div class="form-group">
                         <div class="image" style="background-image: url('<?= $book['image'] ?>');"></div>
@@ -92,8 +92,24 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
                         <button class="btn submit">განაახლე</button>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="container-header">
+                <h2>გვერდები</h2>
+                <a class="btn" id="pageBtn">დამატება</a>
+            </div>
+            <div class="page-container">
+                <table id="comics-images">
+                </table>
+                <div class="form-group">
+                    <input type="hidden" name="action" value="insert">
+                </div>
+            </div>
+            <div class="form-sub" id="formSub">
+                <input type="hidden" name="action" value="insert">
+                <input type="hidden" id="pages-to-render" value='<?=$book['pages'] ?>'>
+                <button class="btn submit">ატვირთვა</button>
+            </div>
+        </form>
     </main>
     
     <script src="assets/admin_resources/js/script.js"></script>

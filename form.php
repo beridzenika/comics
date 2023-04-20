@@ -5,12 +5,14 @@ include('helpers/functions.php');
 
 // insert
 if(isset($_POST['action']) && $_POST['action'] == 'insert') {
+    $pages = json_encode($_POST['images']);
+
     list($title, $published, $writer, $artist, $description, $image, $status) = actionData($connection);
 
     if($title && $published && $writer && $artist && $description && $image) {
 
-        $query = $connection->prepare("INSERT INTO `books` (`title`, `published`, `writer`, `artist`, `description`, `image`, `status`) VALUES (?,?,?,?,?,?,?)");
-        $query->bind_param('sssssss',$title, $published, $writer, $artist, $description, $image, $status);
+        $query = $connection->prepare("INSERT INTO `books` (`title`, `published`, `writer`, `artist`, `description`, `image`, `status`, `pages`) VALUES (?,?,?,?,?,?,?,?)");
+        $query->bind_param('ssssssss',$title, $published, $writer, $artist, $description, $image, $status, $pages);
         if($query->execute()) {
             header('Location: admin.php');
         } else {
@@ -36,8 +38,8 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
         <div class="container-header">
             <h2>კომიქსი</h2>
         </div>
+        <form action="" id="comicForm" method="post">
         <div class="comic-container">
-            <form action="" id="comicForm" method="post">
                 <div class="left-grid">
                     <div class="form-group">
                         <div class="image" style="background-image: url('<?= $book['image'] ?>');"></div>
@@ -77,25 +79,23 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
                         <input type="hidden" name="action" value="insert">
                     </div>
                 </div>
-            </form>
         </div>
         <div class="container-header">
             <h2>გვერდები</h2>
             <a class="btn" id="pageBtn">დამატება</a>
         </div>
         <div class="page-container">
-            <form action="" id="pageForm" method="post">
                 <table id="comics-images">
                 </table>
                 <div class="form-group">
                     <input type="hidden" name="action" value="insert">
                 </div>
-            </form>
         </div>
         <div class="form-sub" id="formSub">
             <input type="hidden" name="action" value="insert">
             <button class="btn submit">ატვირთვა</button>
         </div>
+    </form>
     </main>
     
     <script src="assets/admin_resources/js/script.js"></script>

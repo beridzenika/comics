@@ -20,3 +20,14 @@
     color: white;
     font-family: $p-font;
 }
+
+@mixin comic_nav_box() {
+    background: #000000d9;
+    overflow-y: hidden;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 100;
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}

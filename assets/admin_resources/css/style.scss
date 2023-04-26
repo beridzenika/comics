@@ -115,11 +115,13 @@ body{
     main{
         margin: 50px auto;
         width: 90%;
-        h2{
-            margin: 20px auto 40px;
-            font-size: 26px;
-            font-weight: bolder;
-            display: inline-block;
+        .container-header{
+            h2{
+                margin: 20px auto 40px;
+                font-size: 26px;
+                font-weight: bolder;
+                display: inline-block;
+            }
         }
         a, button{
             @include button();
@@ -128,11 +130,15 @@ body{
                 transition: 0.2s;
             }
         }
-        .comic-container, .page-container{
+        .book-container, .comic-container, .page-container{
             padding: 15px;
             border-radius: 15px;
             box-shadow: $shadow;
             width: 100%;
+        }
+        .comic-container, .page-container{
+            display: flex;
+            justify-content: space-between;
         }
         .page-container{
             table{
@@ -193,8 +199,6 @@ body{
             }
         }
         form{
-            display: flex;
-            justify-content: space-between;
             .left-grid{
                 width: 40%;
             }

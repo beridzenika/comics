@@ -2,6 +2,8 @@
 include('helpers/db_connection.php');
 include('helpers/functions.php');
 
+isGuest();
+
 //sort
 $SortType = isset($_GET['sort']) && $_GET['sort'] ? $_GET['sort'] : 0;
 $sortBy = GetSortBy($SortType);

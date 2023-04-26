@@ -30,7 +30,7 @@ body header {
   margin: auto;
   padding: 10px;
   border-bottom: solid 1px #3c4c5e;
-  background-color: #09141b;
+  background-color: #050a0e;
 }
 body header .right-h {
   width: 30%;
@@ -78,7 +78,7 @@ body menu {
   margin: auto;
   padding: 10px;
   border-bottom: solid 1px #3c4c5e;
-  background-color: #09141b;
+  background-color: #050a0e;
 }
 body menu ul {
   display: flex;
@@ -136,8 +136,61 @@ body main .comic-container .comic-box .text :hover {
 }
 body main .comic-container .comic-box .text a {
   text-decoration: none;
-  color: #09141b;
+  color: #050a0e;
   font-weight: 800;
+}
+body section.page header {
+  position: fixed;
+  color: #ffffff;
+  box-sizing: border-box;
+  max-height: 120px;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8509803922);
+  overflow-y: hidden;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 100;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+body section.page header h3 {
+  font-size: 20px;
+}
+body section.page .page {
+  background-color: #050a0e;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+body section.page .page img {
+  height: 100%;
+}
+body section.page footer {
+  position: absolute;
+  max-height: 75px;
+  bottom: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8509803922);
+  overflow-y: hidden;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 100;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+body section.page footer nav {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin: auto;
+}
+body section.page footer nav span svg {
+  fill: #ffffff;
+}
+body section.page footer nav .left_arrow svg {
+  transform: scaleX(-1);
 }
 body .login-contianer {
   display: flex;
@@ -192,7 +245,7 @@ body footer {
   margin: auto;
   padding: 10px 10%;
   align-items: center;
-  background-color: #09141b;
+  background-color: #050a0e;
 }
 body footer .container {
   display: flex;

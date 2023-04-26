@@ -1,3 +1,16 @@
+//logout confirm
+let logout = document.getElementById("logout");
+
+function confirmation(e){
+    let con = confirm('დარწმუნებული ხარ?');
+    if(con==false){
+        e.preventDefault();
+    }
+}
+if (logout){
+    logout.addEventListener("click", confirmation);
+}
+
 let imageTextarea = document.querySelector('textarea[name="image"]');
 let imageDiv = document.querySelector('.image');
    
@@ -6,41 +19,51 @@ imageTextarea.addEventListener('input', function() {
     imageDiv.style.backgroundImage = `url(${imageUrl})`;
 });
 
-let btnClick = document.getElementById("pageBtn");
-let i = 1;
-btnClick.addEventListener("click", renderImageForm);
+let addImageInput = document.getElementById("pageBtn");
+let pagesToRenderInput = document.getElementById('pages-to-render');
+let formArrey = [];
+if (pagesToRenderInput) {
+    pages = JSON.parse(pagesToRenderInput.value);
+    pages.forEach(function (value, key) {
+        formArrey[key] = {'image': value};
+    });
+    upateTable();
+}
 
-function renderImageForm()
+//page form
+
+addImageInput.addEventListener("click", addImageTable);
+function addImageTable () {
+    formArrey.push({'image':''});
+    upateTable();
+}
+function upateTable() {
+    document.getElementById("comics-images").innerHTML = "";
+    formArrey.forEach(function (value, key) {
+        document.getElementById("comics-images").innerHTML += getImageFormHtml(key, value.image);
+    });
+}
+function getImageFormHtml(key, image)
 {
-    let table =  document.getElementById('comics-images');
-    let tmp = `         <td>${i}</td>
-                        <td><div id="image_${i}" class="image" style="background-image: url("");"></div></td>
-                        <td><textarea name="image" rows="7" oninput="changeImage(this,${i})"></textarea></td>
-                        
+    return `    <tr class="comic-box">
+                        <td>${key+1}</td>
+                        <td><div id="image_${key}" class="image" style="background-image: url(${image});"></div></td>
+                        <td><textarea name="images[]" rows="7" oninput="changeImage(this,${key})">${image}</textarea></td>
                         <td class="actions">
                             <form action="" method="post">
-                                <button class="delete" type="button" onclick="deletePage(${i})">წაშლა</button>
+                                <button class="delete" type="button" onclick="deletePage(${key})">წაშლა</button>
                             </form>
                         </td>
-                    `;
-    var container = document.createElement("tr");
-    container.classList.add('comic-box');
-    container.id = 'comic-image'+i;
-    container.innerHTML = tmp;
-    table.appendChild(container);
-    i++;
+                    </tr>`;
 }
-function changeImage(element, elementID)
-{
-    let image = document.getElementById('image_'+elementID);
-    let imageUrl = element.value;
-    image.style.backgroundImage = `url(${imageUrl})`;
+function changeImage(input, key) {
+    let imageUrl = input.value;
+    formArrey[key].image = imageUrl;
+    console.log(formArrey);
+    document.getElementById("image_"+key).style.backgroundImage = `url(${imageUrl})`;
 
 }
-function deletePage(id)
-{
-    const element = document.getElementById('comic-image'+id);
-    element.remove();
-
-
+function deletePage(key) {
+    formArrey.splice(key, 1);
+    upateTable();
 }

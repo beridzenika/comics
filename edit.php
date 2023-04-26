@@ -2,6 +2,8 @@
 include('helpers/db_connection.php');
 include('helpers/functions.php');
 
+session_start();
+isAdmin();
 
 $id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null; 
 
@@ -18,13 +20,15 @@ if($id) {
 
 // update
 if(isset($_POST['action']) && $_POST['action'] == 'update') {
+    
+    $pages = json_encode($_POST['images']);
+
     list($title, $published, $writer, $artist, $description, $image, $status) = actionData($connection);
 
     if($title && $published && $writer && $artist && $description && $image) {
 
-        $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ? WHERE id = ?");
-        $query->bind_param('ssssssss',$title, $published, $writer, $artist, $description, $image, $status, $id);
-        print_r($query);
+        $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ?, pages = ? WHERE id = ?");
+        $query->bind_param('sssssssss', $title, $published, $writer, $artist, $description, $image, $status, $pages, $id);
         if($query->execute()) {
             header('Location: admin.php');
         } else {
@@ -50,8 +54,8 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
         <div class="container-header">
             <h2>კომიქსი #<?= $book['id'] ?></h2>
         </div>
-        <div class="comic-container">
-            <form action="" method="post">
+        <form action="" method="post">
+            <div class="comic-container">
                 <div class="left-grid">
                     <div class="form-group">
                         <div class="image" style="background-image: url('<?= $book['image'] ?>');"></div>
@@ -87,13 +91,31 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
                             <option value="0" <?= $book['status'] == 0 ? 'selected' : '' ?>>უმოქმედო</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <input type="hidden" name="action" value="update">
-                        <button class="btn submit">განაახლე</button>
-                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="container-header">
+                <h2>გვერდები</h2>
+                <a class="btn" id="pageBtn">დამატება</a>
+            </div>
+            <div class="page-container">
+                <table id="comics-images">
+                </table>
+<<<<<<< HEAD
+            </div>
+            <div class="form-sub" id="formSub">
+                <input type="hidden" name="action" value="update">
+=======
+                <div class="form-group">
+                    <input type="hidden" name="action" value="insert">
+                </div>
+            </div>
+            <div class="form-sub" id="formSub">
+                <input type="hidden" name="action" value="insert">
+>>>>>>> 4a2d74ef1b3e195ab6e5b6e81f014da41aaff8d1
+                <input type="hidden" id="pages-to-render" value='<?=$book['pages'] ?>'>
+                <button class="btn submit">ატვირთვა</button>
+            </div>
+        </form>
     </main>
     
     <script src="assets/admin_resources/js/script.js"></script>

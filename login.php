@@ -1,10 +1,9 @@
 <?php
-session_start();
-
 include 'helpers/db_connection.php';
 include 'helpers/functions.php';
-    
-// isGuest();
+
+session_start();    
+isGuest();
 
 $error = '';
 if(isset($_POST['action']) && $_POST['action'] == 'login') {
@@ -20,7 +19,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
                 $_SESSION['logedin'] = true;
 
                 if ($user['is_admin']) {
-                    $_SESSION['is_admin'] = true;
+                    $_SESSION['is_admin'] = 1;
                     header('location: admin.php');
                 } else {
                     header('location: index.php');

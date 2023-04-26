@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $log = empty($_SESSION) ? "1" : "2";
 ?>
@@ -20,7 +22,7 @@ $log = empty($_SESSION) ? "1" : "2";
 
         <div class="login">
             <?php if ($log == "2"): ?>
-                <a href="logout.php" id="logout">გამოსვლა</a>
+                <a href="logout.php" id="logout">გასვლა</a>
             <?php else: ?>
                 <a href="login.php">შემოსვლა</a>
             <?php endif ?>

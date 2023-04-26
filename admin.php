@@ -2,6 +2,8 @@
 include('helpers/db_connection.php');
 include('helpers/functions.php');
 
+session_start();
+isAdmin();
 
 //delete
 if(isset($_POST['action']) && $_POST['action'] == 'delete') {
@@ -36,7 +38,7 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
             <h2>კომიქსები</h2>
             <a href="form.php" class="btn">დაამატე</a>
         </div>
-        <table class="comic-container">
+        <table class="book-container">
             <?php foreach($books as $book): ?>
                 <tr class="comic-box">
                     <td><img src="<?=$book['image']?>" alt=""></td>
@@ -60,5 +62,6 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
             <?php endforeach; ?>
         </table>
     </main>
+    <script src="assets/admin_resources/js/script.js"></script>
 </body>
 </html>

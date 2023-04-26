@@ -104,7 +104,7 @@ body main {
   margin: 50px auto;
   width: 90%;
 }
-body main h2 {
+body main .container-header h2 {
   margin: 20px auto 40px;
   font-size: 26px;
   font-weight: bolder;
@@ -124,11 +124,15 @@ body main a:hover, body main button:hover {
   background-color: #3b7979;
   transition: 0.2s;
 }
-body main .comic-container, body main .page-container {
+body main .book-container, body main .comic-container, body main .page-container {
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
   width: 100%;
+}
+body main .comic-container, body main .page-container {
+  display: flex;
+  justify-content: space-between;
 }
 body main .page-container table {
   width: 100%;
@@ -201,10 +205,6 @@ body main .comic-box .image {
   background-size: cover !important;
   background-position: center;
   background: #3fd5c1;
-}
-body main form {
-  display: flex;
-  justify-content: space-between;
 }
 body main form .left-grid {
   width: 40%;

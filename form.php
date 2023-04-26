@@ -39,13 +39,12 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
         <div class="container-header">
             <h2>კომიქსი</h2>
         </div>
-<<<<<<< HEAD
         <form action="" method="post">
             <div class="comic-container">
-=======
         <form action="" id="comicForm" method="post">
         <div class="comic-container">
->>>>>>> 4a2d74ef1b3e195ab6e5b6e81f014da41aaff8d1
+        <form action="" id="comicForm" method="post">
+        <div class="comic-container">
                 <div class="left-grid">
                     <div class="form-group">
                         <div class="image" style="background-image: url('<?= $book['image'] ?>');"></div>
@@ -82,7 +81,6 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
                         </select>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>
             <div class="container-header">
                 <h2>გვერდები</h2>
@@ -97,7 +95,6 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
                 <button class="btn submit">ატვირთვა</button>
             </div>
         </form>
-=======
         </div>
         <div class="container-header">
             <h2>გვერდები</h2>
@@ -115,7 +112,6 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
             <button class="btn submit">ატვირთვა</button>
         </div>
     </form>
->>>>>>> 4a2d74ef1b3e195ab6e5b6e81f014da41aaff8d1
     </main>
     
     <script src="assets/admin_resources/js/script.js"></script>

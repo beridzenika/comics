@@ -100,18 +100,15 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
             <div class="page-container">
                 <table id="comics-images">
                 </table>
-<<<<<<< HEAD
             </div>
             <div class="form-sub" id="formSub">
                 <input type="hidden" name="action" value="update">
-=======
                 <div class="form-group">
                     <input type="hidden" name="action" value="insert">
                 </div>
             </div>
             <div class="form-sub" id="formSub">
                 <input type="hidden" name="action" value="insert">
->>>>>>> 4a2d74ef1b3e195ab6e5b6e81f014da41aaff8d1
                 <input type="hidden" id="pages-to-render" value='<?=$book['pages'] ?>'>
                 <button class="btn submit">ატვირთვა</button>
             </div>

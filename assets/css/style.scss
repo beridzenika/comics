@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,500&family=Noto+Sans+Georgian:wght@400;600;800&family=Noto+Serif+Georgian:wght@800&display=swap');
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/fontawesome-webfont.eot?v=4.7.0');
+    src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),url('../fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),url('../fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),url('../fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),url('../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
 
 $white: #ffffff;
 $gray: #3c4c5e;
@@ -18,6 +25,10 @@ $shadow: 0px 0px 18px 0px #e3e3e3bf;
 }
 body{
     font-family: $p-font;
+
+    .checked {
+        color: orange!important;
+    }
 
     .logo{
         font-size: 22;
@@ -135,7 +146,7 @@ body{
                         box-shadow: none;
                     }
                 }
-                .text{
+                .text {
                     margin-top: 10px;
                     border-top: $gray solid 1px;
                     padding: 5px 0px;
@@ -185,7 +196,7 @@ body{
                 justify-content: space-around;
                 width: 60%;
                 margin: auto;
-                span{
+                button{
                     svg{
                         fill: $white;
                         
@@ -196,6 +207,10 @@ body{
                         transform: scaleX(-1);
                     }
                 }
+            }
+            .fa-star {
+                color: white;
+                cursor: pointer;
             }
         }
     }
@@ -281,31 +296,6 @@ body{
             margin: 10px 50px;
         }
     }
-
-
-    
-    // .shadow {
-    //     top: 0px;
-    //     bottom: 0px;
-    //     left: 0px;
-    //     right: 0px;
-    //     position: fixed;
-    //     background: rgba(0, 0, 0, 0.199);
-    //     z-index: 1;
-        
-    // }
-
-    // .pop-up {
-    //     width: 1000px;
-    //     padding: 50px;
-    //     border-radius: 10px;
-    //     margin: 130px;
-    //     position: fixed;
-    //     top: 0px;
-    //     background-color: #FFFFFF;
-    //     z-index: 2;
-    // }
-
 
     @media only screen and (min-width:600px) {
         .right-h{

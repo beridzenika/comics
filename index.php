@@ -33,6 +33,7 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ჭაბუკის კომიქსები</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -63,6 +64,13 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
                     <a href="comic.php?id=<?= $book['id'] ?>">
                         <span class="title"><?=$book['title']?></span>
                     </a>
+                </div>
+                <div class="rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
                 </div>
             </div>
             <?php endforeach; ?>

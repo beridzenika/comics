@@ -8,8 +8,9 @@ function actionData($connection) {
     $description = isset($_POST['description']) ? $_POST['description'] : '' ;
     $image = isset($_POST['image']) ? $_POST['image'] : '' ;
     $status = isset($_POST['status']) ? $_POST['status'] : '' ;
+    $stars = isset($_POST['stars']) ? $_POST['stars'] : '' ;
 
-    return array($title, $published, $writer, $artist, $description, $image, $status);
+    return array($title, $published, $writer, $artist, $description, $image, $status, $stars);
 }
 
 function search($attach) {

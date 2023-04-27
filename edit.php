@@ -25,7 +25,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
 
     list($title, $published, $writer, $artist, $description, $image, $status) = actionData($connection);
 
-    if($title && $published && $writer && $artist && $description && $image) {
+    if($title && $published && $writer && $artist && $description && $image && $pages) {
 
         $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ?, pages = ? WHERE id = ?");
         $query->bind_param('sssssssss', $title, $published, $writer, $artist, $description, $image, $status, $pages, $id);
@@ -108,7 +108,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
                 </div>
             </div>
             <div class="form-sub" id="formSub">
-                <input type="hidden" name="action" value="insert">
+                <input type="hidden" name="action" value="update">
                 <input type="hidden" id="pages-to-render" value='<?=$book['pages'] ?>'>
                 <button class="btn submit">ატვირთვა</button>
             </div>

@@ -11,26 +11,26 @@ if (logout){
     logout.addEventListener("click", confirmation);
 }
 
+//image changing
 let imageTextarea = document.querySelector('textarea[name="image"]');
-let imageDiv = document.querySelector('.image');
-   
+let imageDiv = document.querySelector('.image'); 
 imageTextarea.addEventListener('input', function() {
-    const imageUrl = this.value;
+    let imageUrl = this.value;
     imageDiv.style.backgroundImage = `url(${imageUrl})`;
 });
+
+//page form
 
 let addImageInput = document.getElementById("pageBtn");
 let pagesToRenderInput = document.getElementById('pages-to-render');
 let formArrey = [];
-if (pagesToRenderInput) {
+if (pagesToRenderInput && pagesToRenderInput.value) {
     pages = JSON.parse(pagesToRenderInput.value);
     pages.forEach(function (value, key) {
         formArrey[key] = {'image': value};
     });
     upateTable();
 }
-
-//page form
 
 addImageInput.addEventListener("click", addImageTable);
 function addImageTable () {
@@ -59,7 +59,6 @@ function getImageFormHtml(key, image)
 function changeImage(input, key) {
     let imageUrl = input.value;
     formArrey[key].image = imageUrl;
-    console.log(formArrey);
     document.getElementById("image_"+key).style.backgroundImage = `url(${imageUrl})`;
 
 }

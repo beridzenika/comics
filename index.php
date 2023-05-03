@@ -9,7 +9,7 @@ $SortType = isset($_GET['sort']) && $_GET['sort'] ? $_GET['sort'] : 0;
 $sortBy = GetSortBy($SortType);
 
 //paging
-$limit = 3;
+$limit = 10;
 $offset = '';
 if(isset($_GET['page']) && $_GET['page'] && $_GET['page'] > 1) {
     $offset = ' OFFSET ' . ($_GET['page'] - 1) * $limit;
@@ -23,21 +23,13 @@ $pageNumber = ceil($count['cnt'] / $limit);
 // $query = $connection->query("SELECT * FROM books WHERE status = 1 " . search("AND") . "ORDER BY books.id DESC");
 $query = $connection->query("SELECT * FROM books WHERE status = 1 " . search("AND") . "ORDER BY ".$sortBy ." LIMIT ". $limit ."". $offset);
 $books = $query->fetch_all(MYSQLI_ASSOC);
+
+//head
+$pageTitle = "ჭაბუკის კომიქსები";
+$styleLink = 'assets/css/style.css';
 ?>
 
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჭაბუკის კომიქსები</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-    
+<?php include('components/head.php')?>
     <?php include('components/header.php')?>
 
     <form action="">
@@ -57,20 +49,20 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
         <div class="comic-container">
             <?php foreach($books as $book): ?>
             <div class="comic-box">
-                <a href="comic.php?id=<?= $book['id'] ?>">
+                <a href="issue.php?id=<?= $book['id'] ?>">
                     <img src="<?=$book['image']?>" alt="">
                 </a>
                 <div class="text">
-                    <a href="comic.php?id=<?= $book['id'] ?>">
+                    <a href="issue.php?id=<?= $book['id'] ?>">
                         <span class="title"><?=$book['title']?></span>
                     </a>
                 </div>
                 <div class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
+                    <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
+                    <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
+                    <span class="fa-star"><?php include 'assets/icons/star.svg'?></span>
+                    <span class="fa-star"><?php include 'assets/icons/star.svg'?></span>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -83,7 +75,5 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
         <?php endfor; ?>
     </div>
 
-
     <?php include('components/footer.php')?>
-</body>
-</html>
+<?php include('components/foot.php')?>

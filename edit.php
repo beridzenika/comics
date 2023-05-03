@@ -23,12 +23,12 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
     
     $pages = json_encode($_POST['images']);
 
-    list($title, $published, $writer, $artist, $description, $image, $status) = actionData($connection);
+    list($title, $published, $writer, $artist, $description, $image, $status, $prevIssue, $nextIssue) = actionData($connection);
 
-    if($title && $published && $writer && $artist && $description && $image && $pages) {
+    if($title && $published && $writer && $artist && $description && $image) {
 
-        $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ?, pages = ? WHERE id = ?");
-        $query->bind_param('sssssssss', $title, $published, $writer, $artist, $description, $image, $status, $pages, $id);
+        $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ?, pages = ?, prev_issue = ?, next_issue = ? WHERE id = ?");
+        $query->bind_param('sssssssssss', $title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $id);
         if($query->execute()) {
             header('Location: admin.php');
         } else {
@@ -37,17 +37,13 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
         }
     }
 }
+//head
+$pageTitle = "ჭაბუკის კომიქსები | განახლება";
+$styleLink = 'assets/admin_resources/css/style.css';
+$scriptLink = 'assets/admin_resources/js/script.js';
 ?>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჭაბუკის კომიქსები | დამატება</title>
-    <link rel="stylesheet" href="assets/admin_resources/css/style.css">
-</head>
-<body>
+<?php include('components/head.php')?>
     <?php include('components/header.php')?>
 
     <main>
@@ -80,6 +76,16 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
                         <label for="">მხატვარი</label>
                         <input type="text" name="artist" value="<?= $book['artist'] ?>">
                     </div>
+                    <div class="form-group shared">
+                        <div class="child-group">
+                            <label for="">წინა</label>
+                            <input type="text" name="artist" value="<?= $book['prev_issue'] ?>">
+                        </div>
+                        <div class="child-group">
+                            <label for="">შემდეგი</label>
+                            <input type="text" name="artist" value="<?= $book['next_issue'] ?>">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="">აღწერილობა</label>
                         <textarea name="description" id="" cols="30" rows="10"><?= $book['description'] ?></textarea>
@@ -99,13 +105,11 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
             </div>
             <div class="page-container">
                 <table id="comics-images">
+                    <!-- image forms -->
                 </table>
             </div>
             <div class="form-sub" id="formSub">
                 <input type="hidden" name="action" value="update">
-                <div class="form-group">
-                    <input type="hidden" name="action" value="insert">
-                </div>
             </div>
             <div class="form-sub" id="formSub">
                 <input type="hidden" name="action" value="update">
@@ -114,7 +118,5 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
             </div>
         </form>
     </main>
-    
-    <script src="assets/admin_resources/js/script.js"></script>
-</body>
-</html>
+
+<?php include('components/foot.php')?>

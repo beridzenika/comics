@@ -7,7 +7,7 @@ $log = empty($_SESSION) ? "1" : "2";
 ?>
 <header>
     <div class="logo">
-        <a href="http://localhost/comics/">
+        <a href="index.php">
             <span>ჭაბუკის</span>
             <span>კომიქსები</span>
         </a>

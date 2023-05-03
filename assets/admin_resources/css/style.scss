@@ -3,9 +3,9 @@
 @import 'mixins';
 
 $white: #ffffff;
-$gray: #3b7979;
-$primary: #3fd5c1;
-$black: #0c0c0c;
+$gray: #005157;
+$primary: #00BCC9;
+$black: #040A0A;
 
 $p-font: 'Noto Sans Georgian', sans-serif;
 $s-font: 'Noto Serif Georgian', serif;
@@ -88,6 +88,7 @@ body{
     }
     menu{
         @include header();
+        padding: 7px;
         ul{
             display: flex;
             justify-content: space-around;
@@ -224,6 +225,13 @@ body{
                 }
                 button{
                     margin-top: 20px;
+                }
+            }
+            .shared{
+                display: flex;
+                justify-content: space-between;
+                .child-group{
+                    width: 45%;
                 }
             }
         }

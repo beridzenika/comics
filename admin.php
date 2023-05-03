@@ -21,17 +21,13 @@ if(isset($_POST['action']) && $_POST['action'] == 'delete') {
 $query = $connection->query("SELECT * FROM books " . search("WHERE") . " ORDER BY books.id DESC");
 $books = $query->fetch_all(MYSQLI_ASSOC);
 
+$pageTitle = "ჭაბუკის კომიქსები | ადმინი";
+$styleLink = 'assets/admin_resources/css/style.css';
+$scriptLink = 'assets/admin_resources/js/script.js';
 ?>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჭაბუკის კომიქსები | ადმინი</title>
-    <link rel="stylesheet" href="assets/admin_resources/css/style.css">
-</head>
-<body>
+<?php include('components/head.php')?>
+
     <?php include('components/header.php')?>
     <main>
         <div class="container-header">
@@ -62,6 +58,4 @@ $books = $query->fetch_all(MYSQLI_ASSOC);
             <?php endforeach; ?>
         </table>
     </main>
-    <script src="assets/admin_resources/js/script.js"></script>
-</body>
-</html>
+<?php include('components/foot.php')?>

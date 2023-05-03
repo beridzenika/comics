@@ -9,7 +9,26 @@ function confirmation(e){
 if (logout){
     logout.addEventListener("click", confirmation);
 }
+//rating stars
+let elements = document.querySelectorAll(".fa-star");
+let active = document.querySelectorAll(".checked").length;
 
+for (let i = 0; i < elements.length; i++) {
+    elements[i].addEventListener("click", function() {
+        active = i+1;
+        console.log(active);
+    });
+    elements[i].addEventListener("mouseover", function() {
+        for (let j = 0; j < i+1; j++) {
+            elements[j].classList.add("checked");
+        }
+    });
+    elements[i].addEventListener("mouseout", function() {
+        for (let i = active; i < elements.length; i++) {
+            elements[i].classList.remove("checked");
+        }
+    });
+}
 
 //pages image generation
 let leftArrow = document.getElementById("left_arrow");
@@ -49,16 +68,6 @@ leftArrow.addEventListener("click", function () {
     }
     renderPage();
 });
-
-
-//rating stars
-let elements = document.querySelectorAll(".fa-star");
-
-for (let i=0; i < elements.length; i++) {
-    elements.addEventListener("mouseover", function () {
-    });
-}
-
 
 
 

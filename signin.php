@@ -6,6 +6,7 @@ include('helpers/functions.php');
 
 isGuest();
 
+//registration
 if(isset($_POST['action']) && $_POST['action'] == 'registration') {
     $username = isset($_POST['username']) && $_POST['username'] != '' ? $_POST['username'] : null;
     $email = isset($_POST['email']) && $_POST['email'] != '' ? $_POST['email'] : null;  
@@ -35,17 +36,12 @@ if(isset($_POST['action']) && $_POST['action'] == 'registration') {
         $error = 'გთხოვთ ბოლომდე შეავსეთ';
     }
 }
+//head
+$pageTitle = "რეგისტრაცია";
+$styleLink = 'assets/css/style.css';
 ?>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>რეგისტრაცია</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<?php include('components/head.php')?>
 
     <div class="login-contianer">
         <div class="content">
@@ -82,6 +78,4 @@ if(isset($_POST['action']) && $_POST['action'] == 'registration') {
             </form>
         </div>
     </div>
-    
-</body>
-</html>
+<?php include('components/foot.php')?>

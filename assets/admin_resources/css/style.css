@@ -15,7 +15,7 @@ body .logo {
 body .logo :first-child {
   font-family: "Lora", serif;
   font-family: "Noto Serif Georgian", serif;
-  color: #3fd5c1;
+  color: #00BCC9;
   font-style: italic;
   text-decoration: none;
 }
@@ -29,8 +29,8 @@ body header {
   align-items: center;
   margin: auto;
   padding: 10px;
-  border-bottom: solid 1px #3b7979;
-  background-color: #0c0c0c;
+  border-bottom: solid 1px #005157;
+  background-color: #040A0A;
 }
 body header .right-h {
   width: 30%;
@@ -44,7 +44,7 @@ body header .right-h .search form input {
   color: #ffffff;
   padding: 5px;
   width: 90%;
-  border: solid #3b7979 1px;
+  border: solid #005157 1px;
   border-radius: 5px;
   background-color: transparent;
 }
@@ -52,7 +52,7 @@ body header .right-h .search form button {
   border: none;
   background-color: transparent;
   margin: 5px 10px;
-  color: #3b7979;
+  color: #005157;
 }
 body header .right-h .search form button:hover {
   color: #ffffff;
@@ -63,10 +63,10 @@ body header .right-h .login {
 }
 body header .right-h .login a {
   text-decoration: none;
-  color: #3b7979;
+  color: #005157;
   font-weight: 600;
   padding: 5px;
-  border: solid #3b7979 1px;
+  border: solid #005157 1px;
   border-radius: 5px;
 }
 body header .right-h .login a:hover {
@@ -77,8 +77,9 @@ body header .right-h .login a:hover {
 body menu {
   margin: auto;
   padding: 10px;
-  border-bottom: solid 1px #3b7979;
-  background-color: #0c0c0c;
+  border-bottom: solid 1px #005157;
+  background-color: #040A0A;
+  padding: 7px;
 }
 body menu ul {
   display: flex;
@@ -91,7 +92,7 @@ body menu ul li {
 }
 body menu ul li a {
   text-decoration: none;
-  color: #3b7979;
+  color: #005157;
 }
 body menu ul li a:hover {
   color: #ffffff;
@@ -115,13 +116,13 @@ body main a, body main button {
   text-decoration: none;
   border: none;
   padding: 10px 20px;
-  background-color: #3fd5c1;
+  background-color: #00BCC9;
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
 }
 body main a:hover, body main button:hover {
-  background-color: #3b7979;
+  background-color: #005157;
   transition: 0.2s;
 }
 body main .book-container, body main .comic-container, body main .page-container {
@@ -145,7 +146,7 @@ body main .page-container table .comic-box {
 }
 body main .page-container table .comic-box textarea {
   padding: 10px;
-  border: 1px solid #3b7979;
+  border: 1px solid #005157;
   border-radius: 5px;
   font-family: "Noto Sans Georgian", sans-serif;
   width: 700px;
@@ -176,7 +177,7 @@ body main .comic-box .active {
   text-decoration: none;
   border: none;
   padding: 10px 20px;
-  background-color: #3fd5c1;
+  background-color: #00BCC9;
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
@@ -186,7 +187,7 @@ body main .comic-box .inactive {
   text-decoration: none;
   border: none;
   padding: 10px 20px;
-  background-color: #3b7979;
+  background-color: #005157;
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
@@ -204,7 +205,7 @@ body main .comic-box .image {
   background-repeat: no-repeat;
   background-size: cover !important;
   background-position: center;
-  background: #3fd5c1;
+  background: #00BCC9;
 }
 body main form .left-grid {
   width: 40%;
@@ -221,7 +222,7 @@ body main form .form-group .image {
   background-repeat: no-repeat;
   background-size: cover !important;
   background-position: center;
-  background: #3fd5c1;
+  background: #00BCC9;
 }
 body main form .form-group label {
   display: block;
@@ -231,13 +232,20 @@ body main form .form-group label {
 }
 body main form .form-group input, body main form .form-group textarea, body main form .form-group select {
   padding: 10px;
-  border: 1px solid #3b7979;
+  border: 1px solid #005157;
   border-radius: 5px;
   font-family: "Noto Sans Georgian", sans-serif;
   width: 100%;
 }
 body main form .form-group button {
   margin-top: 20px;
+}
+body main form .shared {
+  display: flex;
+  justify-content: space-between;
+}
+body main form .shared .child-group {
+  width: 45%;
 }
 @media only screen and (min-width: 600px) {
   body .right-h {

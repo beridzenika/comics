@@ -5,6 +5,7 @@ include 'helpers/functions.php';
 session_start();    
 isGuest();
 
+//login
 $error = '';
 if(isset($_POST['action']) && $_POST['action'] == 'login') {
     $email = isset($_POST['email']) && $_POST['email'] != '' ? $_POST['email'] : null; 
@@ -33,19 +34,13 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
     } else {
         $error = 'გთხოვთ ბოლომდე შეავსეთ';
     }
-
 }
+//head
+$pageTitle = "შესვლა";
+$styleLink = 'assets/css/style.css';
 ?>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>შესვლა</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<?php include('components/head.php')?>
 
     <div class="login-contianer">
         <div class="content">
@@ -74,6 +69,4 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
             </form>
         </div>
     </div>
-    
-</body>
-</html>
+<?php include('components/foot.php')?>

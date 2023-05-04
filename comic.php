@@ -2,7 +2,7 @@
 include 'helpers/db_connection.php';
 include 'helpers/functions.php';
 
-isGuest();
+//isGuest();
 
 $id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null; 
 

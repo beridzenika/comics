@@ -1,5 +1,5 @@
 <?php
-
+//data cetchion
 function actionData($connection) {
     $title = isset($_POST['title']) ? $_POST['title'] : '' ;
     $published = isset($_POST['published']) ? $_POST['published'] : '' ;
@@ -15,6 +15,7 @@ function actionData($connection) {
     return array($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue);
 }
 
+//search
 function search($attach) {
     if(isset($_GET['search']) && $_GET['search']) {
         $titleLike = $attach . " title LIKE '%" . $_GET['search'] . "%'";
@@ -23,21 +24,21 @@ function search($attach) {
     }
     return $titleLike;
 }
-
+//logged admin/guest
 function isAdmin() {
     if( !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
         header('location: index.php');
     }
 }
+//
+//function isGuest() {
+//    if( isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
+//        header('location: index.php');
+//    }
+//}
 
-function isGuest() {
-    if( isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
-        header('location: index.php');
-    }
-}
 
-
-
+//sort
 function GetSortBy($SortID) {
     switch ($SortID) {
         case 1: return 'id ASC';

@@ -10,15 +10,17 @@ if (logout){
     logout.addEventListener("click", confirmation);
 }
 //rating stars
-let elements = document.querySelectorAll(".fa-star");
+let elements = document.querySelectorAll(".fa");
 let active = document.querySelectorAll(".checked").length;
 
 for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener("click", function() {
         active = i+1;
-        console.log(active);
+        document.querySelector('#rate-star').value = active;
+        document.querySelector('#rateform').submit();
     });
     elements[i].addEventListener("mouseover", function() {
+        // make this into function later
         for (let j = 0; j < i+1; j++) {
             elements[j].classList.add("checked");
         }
@@ -68,6 +70,9 @@ leftArrow.addEventListener("click", function () {
     }
     renderPage();
 });
+
+
+
 
 
 

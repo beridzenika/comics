@@ -2,8 +2,7 @@
 include 'helpers/db_connection.php';
 include 'helpers/functions.php';
 
-session_start();    
-isGuest();
+session_start();
 
 //login
 $error = '';

@@ -2,7 +2,7 @@
 include('helpers/db_connection.php');
 include('helpers/functions.php');
 
-isGuest();
+session_start();
 
 $id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null; 
 
@@ -10,16 +10,30 @@ $id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null;
 if($id) {
     $select_query = $connection->query("SELECT * FROM books WHERE id = " . $id);
     $book = $select_query->fetch_assoc();
+
     if(!$book) {
         die('Error 404');
     }
 } else {
     die('invalid id');
 }
+
+//rating
+if ($_SESSION['logedin']) {
+    if(isset($_POST['action'])) {
+        $star = isset($_POST['action']) ? $_POST['action'] : '' ;
+        $rating = isset($_POST['peopleRating']) ? $_POST['peopleRating'] : '' ;
+
+        $stars = $book['stars'] + $star;
+        $peopleRating = $book['peopleRating'] + 1;
+
+        $query = $connection->prepare("UPDATE books SET stars = ?, peopleRating = ? WHERE id = ?");
+        $query->bind_param('sss', $stars, $peopleRating, $id);
+    }
+}
 //head
 $pageTitle = $book['title'] . " | კომიქსის სერია";
 $styleLink = 'assets/css/style.css';
-setlocale(LC_ALL, 'ka_GE.utf8');
 ?>
 
 <?php include('components/head.php')?>
@@ -41,14 +55,15 @@ setlocale(LC_ALL, 'ka_GE.utf8');
             <div class="issue-info">
                 <div class="left-section">
                     <img src="<?=$book['image']?>" alt="">
-                    
-                    <div class="rating">
-                        <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
-                        <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
-                        <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
-                        <span class="fa-star"><?php include 'assets/icons/star.svg'?></span>
-                        <span class="fa-star"><?php include 'assets/icons/star.svg'?></span>
-                    </div>
+                    <form id="rateform" method="post">
+                        <input type="hidden" name="action" id="rate-star">
+                        <div class="rating">
+                            <?php for($i = 1; $i <= 5; $i++) : ?>
+                                <?php $ratedStars = $book['stars'] / $book['peopleRating'] ?>
+                                <span class="fa fa-star <?= $ratedStars >= $i ? "checked" : "" ?>"><?php include 'assets/icons/star.svg'?></span>
+                            <?php endfor ?>
+                        </div>
+                    </form>
                 </div>
                 <div class="right-section">
                     <h1><?=$book['title']?></h1>

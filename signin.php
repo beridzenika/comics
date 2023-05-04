@@ -4,7 +4,7 @@ session_start();
 include('helpers/db_connection.php');
 include('helpers/functions.php');
 
-isGuest();
+//isGuest();
 
 //registration
 if(isset($_POST['action']) && $_POST['action'] == 'registration') {

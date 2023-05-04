@@ -2,7 +2,7 @@
 include('helpers/db_connection.php');
 include('helpers/functions.php');
 
-isGuest();
+//isGuest();
 
 //sort
 $SortType = isset($_GET['sort']) && $_GET['sort'] ? $_GET['sort'] : 0;
@@ -35,12 +35,12 @@ $styleLink = 'assets/css/style.css';
     <form action="">
         <div class="form-group">
             <select name="sort" id="" onchange="this.form.submit()">
-                <option value="0" <?=$SortType == "0" ? "selected" : "" ?>>თარიღი კლებადობით</option>
-                <option value="1" <?=$SortType == "1" ? "selected" : "" ?>>თაროღი მატობით</option>
-                <option value="2" <?=$SortType == "2" ? "selected" : "" ?>>სათაური კლებადობით</option>
-                <option value="3" <?=$SortType == "3" ? "selected" : "" ?>>სათაური მატობით</option>
-                <option value="4" <?=$SortType == "4" ? "selected" : "" ?>>ფასი კლებადობით</option>
-                <option value="5" <?=$SortType == "5" ? "selected" : "" ?>>ფასი მატობით</option>
+                <option value="0" <?=$SortType == "0" ? "selected" : ""?>>თარიღი კლებადობით</option>
+                <option value="1" <?=$SortType == "1" ? "selected" : ""?>>თაროღი მატობით</option>
+                <option value="2" <?=$SortType == "2" ? "selected" : ""?>>სათაური კლებადობით</option>
+                <option value="3" <?=$SortType == "3" ? "selected" : ""?>>სათაური მატობით</option>
+                <option value="4" <?=$SortType == "4" ? "selected" : ""?>>ფასი კლებადობით</option>
+                <option value="5" <?=$SortType == "5" ? "selected" : ""?>>ფასი მატობით</option>
             </select>
         </div>
     </form>
@@ -58,11 +58,10 @@ $styleLink = 'assets/css/style.css';
                     </a>
                 </div>
                 <div class="rating">
-                    <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
-                    <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
-                    <span class="fa-star checked"><?php include 'assets/icons/star.svg'?></span>
-                    <span class="fa-star"><?php include 'assets/icons/star.svg'?></span>
-                    <span class="fa-star"><?php include 'assets/icons/star.svg'?></span>
+                    <?php for($i = 1; $i <= 5; $i++) : ?>
+                    <?php $ratedStars = $book['stars'] / $book['peopleRating'] ?>
+                       <span class="fa-star <?= $ratedStars >= $i ? "checked" : "" ?>"><?php include 'assets/icons/star.svg'?></span>
+                    <?php endfor; ?>
                 </div>
             </div>
             <?php endforeach; ?>

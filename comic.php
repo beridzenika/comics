@@ -47,14 +47,6 @@ $scriptLink = 'assets/js/script.js';
                         screen
                     </li>
                 </ul> -->
-                
-                <!-- <div class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </div> -->
             </nav>
         </footer>
     </section>

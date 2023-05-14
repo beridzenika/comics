@@ -3,7 +3,7 @@ $white: #fff;
 $gray: #005157;
 $primary: #00D4E3;
 $black: #071111;
-$orange: #FA7F08;
+$orange: #F23005;
 
 $p-font: 'Noto Sans Georgian', sans-serif;
 $s-font: 'Noto Serif Georgian', serif;
@@ -124,18 +124,24 @@ body{
     }
     .issue-nav{
         margin: auto;
-        padding: 10px;
+        padding: 5px;
         background-color: #040A0A;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         a{
-            color: $white;
-            fill: $white;
+            color: $gray;
+            fill: $gray;
             display: flex;
             text-decoration: none;
             cursor: pointer;
+            padding: 0 10px;
             span{
                 padding: 0 5px;
+            }
+            &:hover {
+                color: $white;
+                fill: $white;
+                transition: 0.2s;
             }
         }
     }

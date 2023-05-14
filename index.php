@@ -2,8 +2,6 @@
 include('helpers/db_connection.php');
 include('helpers/functions.php');
 
-//isGuest();
-
 //sort
 $SortType = isset($_GET['sort']) && $_GET['sort'] ? $_GET['sort'] : 0;
 $sortBy = GetSortBy($SortType);
@@ -59,7 +57,13 @@ $styleLink = 'assets/css/style.css';
                 </div>
                 <div class="rating">
                     <?php for($i = 1; $i <= 5; $i++) : ?>
-                    <?php $ratedStars = $book['stars'] / $book['peopleRating'] ?>
+                    <?php 
+                        if($book['stars'] != 0 && $book['peopleRating'] != 0) {
+                            $ratedStars = $book['stars'] / $book['peopleRating'];
+                        } else {
+                            $ratedStars = 5;
+                        }
+                    ?>
                        <span class="fa-star <?= $ratedStars >= $i ? "checked" : "" ?>"><?php include 'assets/icons/star.svg'?></span>
                     <?php endfor; ?>
                 </div>

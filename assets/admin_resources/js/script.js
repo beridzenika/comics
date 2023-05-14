@@ -20,24 +20,27 @@ imageTextarea.addEventListener('input', function() {
 });
 
 //page form
-
 let addImageInput = document.getElementById("pageBtn");
 let pagesToRenderInput = document.getElementById('pages-to-render');
 let formArrey = [];
-if (pagesToRenderInput && pagesToRenderInput.value) {
-    pages = JSON.parse(pagesToRenderInput.value);
-    pages.forEach(function (value, key) {
-        formArrey[key] = {'image': value};
-    });
-    upateTable();
+if (pagesToRenderInput && pagesToRenderInput.value !== 'null') {
+    try {
+        pages = JSON.parse(pagesToRenderInput.value);
+        pages.forEach(function (value, key) {
+            formArrey[key] = { 'image': value };
+        });
+        updateTable();
+    } catch (error) {
+        console.error('Invalid JSON:', error);
+    }
 }
 
 addImageInput.addEventListener("click", addImageTable);
 function addImageTable () {
     formArrey.push({'image':''});
-    upateTable();
+    updateTable();
 }
-function upateTable() {
+function updateTable() {
     document.getElementById("comics-images").innerHTML = "";
     formArrey.forEach(function (value, key) {
         document.getElementById("comics-images").innerHTML += getImageFormHtml(key, value.image);
@@ -64,5 +67,5 @@ function changeImage(input, key) {
 }
 function deletePage(key) {
     formArrey.splice(key, 1);
-    upateTable();
+    updateTable();
 }

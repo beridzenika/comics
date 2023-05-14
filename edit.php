@@ -20,10 +20,8 @@ if($id) {
 
 // update
 if(isset($_POST['action']) && $_POST['action'] == 'update') {
-    
-    $pages = json_encode($_POST['images']);
 
-    list($title, $published, $writer, $artist, $description, $image, $status, $prevIssue, $nextIssue) = actionData($connection);
+    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue) = actionData($connection);
 
     if($title && $published && $writer && $artist && $description && $image) {
 
@@ -79,11 +77,11 @@ $scriptLink = 'assets/admin_resources/js/script.js';
                     <div class="form-group shared">
                         <div class="child-group">
                             <label for="">წინა</label>
-                            <input type="text" name="artist" value="<?= $book['prev_issue'] ?>">
+                            <input type="text" name="prev_issue" value="<?= $book['prev_issue'] ?>">
                         </div>
                         <div class="child-group">
                             <label for="">შემდეგი</label>
-                            <input type="text" name="artist" value="<?= $book['next_issue'] ?>">
+                            <input type="text" name="next_issue" value="<?= $book['next_issue'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -107,9 +105,6 @@ $scriptLink = 'assets/admin_resources/js/script.js';
                 <table id="comics-images">
                     <!-- image forms -->
                 </table>
-            </div>
-            <div class="form-sub" id="formSub">
-                <input type="hidden" name="action" value="update">
             </div>
             <div class="form-sub" id="formSub">
                 <input type="hidden" name="action" value="update">

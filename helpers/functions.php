@@ -8,7 +8,7 @@ function actionData($connection) {
     $description = isset($_POST['description']) ? $_POST['description'] : '' ;
     $image = isset($_POST['image']) ? $_POST['image'] : '' ;
     $status = isset($_POST['status']) ? $_POST['status'] : '' ;
-    $pages = isset($_POST['images']) ? $_POST['images'] : '' ;
+    $pages = isset($_POST['images']) ? json_encode($_POST['images']) : '' ;
     $prevIssue = isset($_POST['prev_issue']) ? $_POST['prev_issue'] : '' ;
     $nextIssue = isset($_POST['next_issue']) ? $_POST['next_issue'] : '' ;
 

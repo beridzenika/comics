@@ -4,13 +4,13 @@ include('helpers/functions.php');
 
 session_start();
 
-$id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null; 
+$id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null;
+$email = isset($_SESSION['email']) && $_SESSION['email'] ? $_SESSION['email'] : null;
 
 //select
 if($id) {
     $select_query = $connection->query("SELECT * FROM books WHERE id = " . $id);
     $book = $select_query->fetch_assoc();
-
     if(!$book) {
         die('Error 404');
     }
@@ -19,35 +19,84 @@ if($id) {
 }
 
 //rating
-if ($_SESSION['logedin']) {
-    if(isset($_POST['action'])) {
-        $star = isset($_POST['action']) ? $_POST['action'] : '' ;
+if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
+    $user_query = $connection->query('SELECT `rates` FROM `users` WHERE email = "'.$email.'"');
+    $user = $user_query->fetch_assoc();
+
+    if(isset($_POST['starsNum'])) {
+
+        $star = isset($_POST['starsNum']) ? $_POST['starsNum'] : '' ;
         $rating = isset($_POST['peopleRating']) ? $_POST['peopleRating'] : '' ;
+        $userRate = isset($user['rates']) ? $user['rates'] : '';
 
-        $stars = $book['stars'] + $star;
-        $peopleRating = $book['peopleRating'] + 1;
+        $userRateArray = json_decode($userRate, true);
 
-        $query = $connection->prepare("UPDATE books SET stars = ?, peopleRating = ? WHERE id = ?");
-        $query->bind_param('sss', $stars, $peopleRating, $id);
+        foreach ($userRateArray as $key => $element) {
+            if ($element['issue'] == $id) {
+                $number = $element['number'];
+                unset($userRateArray[$key]);
+            }
+        }
+        $ratedArray[] = ['issue' => $id, 'number' => $star];
+
+        if (isset($ratedArray)) {
+            if ($userRateArray !== null) {
+                $mergedArray = array_merge($userRateArray, $ratedArray);
+                $userRate = json_encode($mergedArray);
+            } else {
+                $userRate = json_encode($ratedArray);
+            }
+        }
+        if(isset($number)){
+            $stars = $book['stars'] + $star - $number;
+            $peopleRating = $book['peopleRating'];
+        } else {
+            $stars = $book['stars'] + $star;
+            $peopleRating = $book['peopleRating'] + 1;
+        }
+
+        $bookQuery = $connection->prepare("UPDATE books SET stars = ?, peopleRating = ? WHERE id = ?");
+        $bookQuery->bind_param('iis', $stars, $peopleRating, $id);
+        
+        $userQuery = $connection->prepare("UPDATE users SET rates = ? WHERE email = ?");
+        $userQuery->bind_param('ss', $userRate, $email);
+        
+        if($userQuery->execute() && $bookQuery->execute()) {
+            header('Location: issue.php?id=' . $id);
+        } else {
+            print_r($connection->error);
+            echo "Error";
+        }
     }
+}
+//average stars
+if($book['stars'] != 0 && $book['peopleRating'] != 0) {
+    $ratedStars = $book['stars'] / $book['peopleRating'];
+} else {
+    $ratedStars = $book['stars'];
 }
 //head
 $pageTitle = $book['title'] . " | კომიქსის სერია";
 $styleLink = 'assets/css/style.css';
+$scriptLink = 'assets/js/script.js';
 ?>
 
 <?php include('components/head.php')?>
     <?php include('components/header.php')?>
 
     <div class="issue-nav">
-        <a class="left_arrow">
-            <?php include 'assets/icons/arrow.svg'?>
-            <span class="text">წინა</span>
-        </a>
-        <a class="right_arrow">
-            <span class="text">შემდეგი</span>
-            <?php include 'assets/icons/arrow.svg'?>
-        </a>
+        <?php if ($book['prev_issue'] > 0) :?>
+            <a class="left_arrow" href="issue.php?id=<?=$book['prev_issue']?>">
+                <?php include 'assets/icons/arrow.svg'?>
+                <span class="text">წინა</span>
+            </a>
+        <?php endif?>
+        <?php if ($book['next_issue'] > 0) :?>
+            <a class="right_arrow" href="issue.php?id=<?=$book['next_issue']?>">
+                <span class="text">შემდეგი</span>
+                <?php include 'assets/icons/arrow.svg'?>
+            </a>
+        <?php endif?>
     </div>
     
     <main>
@@ -56,10 +105,9 @@ $styleLink = 'assets/css/style.css';
                 <div class="left-section">
                     <img src="<?=$book['image']?>" alt="">
                     <form id="rateform" method="post">
-                        <input type="hidden" name="action" id="rate-star">
+                        <input type="hidden" name="starsNum" id="rate-star">
                         <div class="rating">
                             <?php for($i = 1; $i <= 5; $i++) : ?>
-                                <?php $ratedStars = $book['stars'] / $book['peopleRating'] ?>
                                 <span class="fa fa-star <?= $ratedStars >= $i ? "checked" : "" ?>"><?php include 'assets/icons/star.svg'?></span>
                             <?php endfor ?>
                         </div>

@@ -131,13 +131,11 @@ body{
                 transition: 0.2s;
             }
         }
-        .book-container, .comic-container, .page-container{
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: $shadow;
-            width: 100%;
+        .table-container{
+            @include container();
         }
         .comic-container, .page-container{
+            @include container();
             display: flex;
             justify-content: space-between;
         }
@@ -169,7 +167,7 @@ body{
                 box-shadow: $shadow;
             }
         }
-        .comic-box{
+        .comic-box, .popup{
             margin: 10px;
             td{
                 padding: 10px;
@@ -179,6 +177,9 @@ body{
             }
             .title{
                 font-weight: 800;
+            }
+            input, select{
+                @include input();
             }
             .active{
                 @include button();
@@ -234,6 +235,33 @@ body{
                     width: 45%;
                 }
             }
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $white;
+            z-index: 9999;
+            padding: 15px;
+            border-radius: 15px;
+            width: 50%;
+            form {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #00000080;
+            z-index: 9998;
         }
     }
 

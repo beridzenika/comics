@@ -26,3 +26,9 @@
     border-radius: 5px;
     font-family: $p-font;
 }
+@mixin container() {
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: $shadow;
+    width: 100%;
+}

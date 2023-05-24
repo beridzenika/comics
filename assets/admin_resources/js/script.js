@@ -69,3 +69,17 @@ function deletePage(key) {
     formArrey.splice(key, 1);
     updateTable();
 }
+
+// menu adding popup
+function togglePopup() {
+    let popup = document.getElementById("popupForm");
+    let overlay = document.querySelector(".overlay");
+    
+    if (popup.style.display === "block") {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+    } else {
+        popup.style.display = "block";
+        overlay.style.display = "block";
+    }
+}

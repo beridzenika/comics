@@ -28,7 +28,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
         $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ?, pages = ?, prev_issue = ?, next_issue = ? WHERE id = ?");
         $query->bind_param('sssssssssss', $title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $id);
         if($query->execute()) {
-            header('Location: admin.php');
+            header('Location: index.php?user=admin&page=comics');
         } else {
             print_r($connection->error);
             echo "Error";
@@ -36,9 +36,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'update') {
     }
 }
 //head
-$pageTitle = "ჭაბუკის კომიქსები | განახლება";
-$styleLink = 'assets/admin_resources/css/style.css';
-$scriptLink = 'assets/admin_resources/js/script.js';
+$pageTitle = "ჭაბუკის კომიქსები | ადმინი | კომიქსის განახლება";
 ?>
 
 <?php include('components/head.php')?>
@@ -92,7 +90,7 @@ $scriptLink = 'assets/admin_resources/js/script.js';
                         <label for="">სტატუსი</label>
                         <select name="status" id="">
                             <option value="1" <?= $book['status'] == 1 ? 'selected' : '' ?>>მოქმედი</option>
-                            <option value="0" <?= $book['status'] == 0 ? 'selected' : '' ?>>უმოქმედო</option>
+                            <option value="0" <?= $book['status'] == 0 ? 'selected' : '' ?>>უქმი</option>
                         </select>
                     </div>
                 </div>

@@ -183,7 +183,7 @@ body{
                 }
                 .rating {
                     svg {
-                        width: 15px;
+                        width: 20px;
                     }
                 }
             }
@@ -243,6 +243,8 @@ body{
 
     section.page{
         header{
+            display: block;
+            text-align: center;
             position: fixed;
             color: $white;
             box-sizing: border-box;
@@ -266,6 +268,7 @@ body{
             }
         }
         footer{
+            display: block;
             position: absolute;
             bottom: 0;
             text-align: center;
@@ -282,10 +285,6 @@ body{
                     }
                 }
             }
-            // .fa-star {
-            //     color: white;
-            //     cursor: pointer;
-            // }
         }
     }
 

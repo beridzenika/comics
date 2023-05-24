@@ -22,8 +22,6 @@ $query = $connection->query("SELECT * FROM books " . search("WHERE") . " ORDER B
 $books = $query->fetch_all(MYSQLI_ASSOC);
 
 $pageTitle = "ჭაბუკის კომიქსები | ადმინი";
-$styleLink = 'assets/admin_resources/css/style.css';
-$scriptLink = 'assets/admin_resources/js/script.js';
 ?>
 
 <?php include('components/head.php')?>
@@ -32,9 +30,9 @@ $scriptLink = 'assets/admin_resources/js/script.js';
     <main>
         <div class="container-header">
             <h2>კომიქსები</h2>
-            <a href="form.php" class="btn">დაამატე</a>
+            <a href="?user=admin&page=comics&action=form" class="btn">დაამატე</a>
         </div>
-        <table class="book-container">
+        <table class="table-container">
             <?php foreach($books as $book): ?>
                 <tr class="comic-box">
                     <td><img src="<?=$book['image']?>" alt=""></td>
@@ -43,11 +41,11 @@ $scriptLink = 'assets/admin_resources/js/script.js';
                         <?php if($book['status'] == 1){ ?>
                             <span class="active">მოქმედი</span>
                         <?php } else { ?>
-                            <span class="inactive">უმოქმედო</span>
+                            <span class="inactive">უქმი</span>
                         <?php } ?>
                     </td>
                     <td class="actions">
-                        <a class="edit" href="edit.php?id=<?= $book['id'] ?>">შეცვლა</a>
+                        <a class="edit" href="?user=admin&page=comics&action=edit&id=<?= $book['id'] ?>">შეცვლა</a>
                         <form action="" method="post">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id" value="<?= $book['id'] ?>">

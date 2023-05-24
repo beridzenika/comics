@@ -168,7 +168,7 @@ body main .comic-container .comic-box .text a {
   font-weight: 800;
 }
 body main .comic-container .comic-box .rating svg {
-  width: 15px;
+  width: 20px;
 }
 body main .issue-holder {
   margin: 30px 20px;
@@ -224,6 +224,8 @@ body main .issue-holder .issue-link a:hover {
   transition: 0.2s;
 }
 body section.page header {
+  display: block;
+  text-align: center;
   position: fixed;
   color: #fff;
   box-sizing: border-box;
@@ -254,6 +256,7 @@ body section.page .page img {
   max-width: 100%;
 }
 body section.page footer {
+  display: block;
   position: absolute;
   bottom: 0;
   text-align: center;

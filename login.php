@@ -21,9 +21,9 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
 
                 if ($user['is_admin']) {
                     $_SESSION['is_admin'] = 1;
-                    header('location: admin.php');
+                    header('location: index.php?user=admin&page=comics');
                 } else {
-                    header('location: index.php');
+                    header('location: index.php?');
                 }
             } else {
                 $error = 'პაროლი არასწორია';

@@ -19,20 +19,18 @@ if($id) {
 
 //head
 $pageTitle = $book['title'];
-$styleLink = 'assets/css/style.css';
-$scriptLink = 'assets/js/script.js';
 ?>
 
 <?php include('components/head.php')?>
 
-    <section class="page">
-        <header>
+    <section class="page" id="comic-page">
+        <header id="header">
             <h3><?=$book['title']?></h3>
         </header>
         <div id="page_image_container" class="page">
             <!--image-->
         </div>
-        <footer>
+        <footer id="footer">
             <nav>
                 <span id="left_arrow" class="left_arrow"><?php include 'assets/icons/arrow.svg'?></span>
                 <span id="right_arrow" class="right_arrow"><?php include 'assets/icons/arrow.svg'?></span>

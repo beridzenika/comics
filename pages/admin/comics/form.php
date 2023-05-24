@@ -15,7 +15,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
         $query = $connection->prepare("INSERT INTO `books` (`title`, `published`, `writer`, `artist`, `description`, `image`, `status`, `pages`, `prev_issue`, `next_issue`) VALUES (?,?,?,?,?,?,?,?,?,?)");
         $query->bind_param('ssssssssss',$title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue);
         if($query->execute()) {
-            header('Location: admin.php');
+            header('Location: index.php?user=admin&page=comics');
         } else {
             print_r($connection->error);
             echo "Error";
@@ -23,9 +23,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'insert') {
     }
 }
 //head
-$pageTitle = "ჭაბუკის კომიქსები | დამატება";
-$styleLink = 'assets/admin_resources/css/style.css';
-$scriptLink = 'assets/admin_resources/js/script.js';
+$pageTitle = "ჭაბუკის კომიქსები | ადმინი | კომიქსის დამატება";
 ?>
 
 <?php include('components/head.php')?>
@@ -79,7 +77,7 @@ $scriptLink = 'assets/admin_resources/js/script.js';
                         <label for="">სტატუსი</label>
                         <select name="status" id="">
                             <option value="1">მოქმედი</option>
-                            <option value="0">უმოქმედო</option>
+                            <option value="0">უქმი</option>
                         </select>
                     </div>
                 </div>

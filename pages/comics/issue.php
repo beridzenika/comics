@@ -62,7 +62,7 @@ if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
         $userQuery->bind_param('ss', $userRate, $email);
         
         if($userQuery->execute() && $bookQuery->execute()) {
-            header('Location: issue.php?id=' . $id);
+            header('Location: ?action=issue&id=' . $id);
         } else {
             print_r($connection->error);
             echo "Error";
@@ -77,8 +77,6 @@ if($book['stars'] != 0 && $book['peopleRating'] != 0) {
 }
 //head
 $pageTitle = $book['title'] . " | კომიქსის სერია";
-$styleLink = 'assets/css/style.css';
-$scriptLink = 'assets/js/script.js';
 ?>
 
 <?php include('components/head.php')?>
@@ -86,13 +84,13 @@ $scriptLink = 'assets/js/script.js';
 
     <div class="issue-nav">
         <?php if ($book['prev_issue'] > 0) :?>
-            <a class="left_arrow" href="issue.php?id=<?=$book['prev_issue']?>">
+            <a class="left_arrow" href="?action=issue&id=<?=$book['prev_issue']?>">
                 <?php include 'assets/icons/arrow.svg'?>
                 <span class="text">წინა</span>
             </a>
         <?php endif?>
         <?php if ($book['next_issue'] > 0) :?>
-            <a class="right_arrow" href="issue.php?id=<?=$book['next_issue']?>">
+            <a class="right_arrow" href="?action=issue&id=<?=$book['next_issue']?>">
                 <span class="text">შემდეგი</span>
                 <?php include 'assets/icons/arrow.svg'?>
             </a>
@@ -131,7 +129,7 @@ $scriptLink = 'assets/js/script.js';
                         <p><?=$book['description']?></p>
                     </div>
                     <div class="issue-link">
-                        <a href="comic.php?id=<?= $book['id'] ?>">წაიკითხე</a>
+                        <a href="?action=comic&id=<?= $book['id'] ?>">წაიკითხე</a>
                     </div>
                 </div>
             </div>

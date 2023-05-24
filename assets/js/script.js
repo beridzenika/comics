@@ -13,15 +13,15 @@ if (logout){
 //rate star glow
 let elements = document.querySelectorAll(".fa");
 let active = document.querySelectorAll(".checked").length;
-// let ratedArray = [];
+let ratedArray = [];
 
 for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener("click", function() {
         active = i + 1;
         document.querySelector('#rate-star').value = active;
 
-        // ratedArray.push({ 'issue': '', 'number': ''});
-        // updateRating();
+        ratedArray.push({ 'issue': '', 'number': ''});
+        updateRating();
 
         document.querySelector('#rateform').submit();
     });
@@ -43,10 +43,10 @@ for (let i = 0; i < elements.length; i++) {
         }
     });
 }
-// function updateRating() {
-//     json = JSON.stringify(ratedArray);
-//     document.getElementById("user-rate").value = json;
-// }
+function updateRating() {
+    json = JSON.stringify(ratedArray);
+    document.getElementById("user-rate").value = json;
+}
 
 //pages image generation
 let leftArrow = document.getElementById("left_arrow");
@@ -83,50 +83,25 @@ leftArrow.addEventListener("click", function () {
     renderPage();
 });
 
+// header/footer show/hiding
+let page = document.getElementById('comic-page');
+let header = document.getElementById('header');
+let footer = document.getElementById('footer');
+let timeout;
+
+function hideHeaderFooter() {
+    header.style.display = 'none';
+    footer.style.display = 'none';
+}
+
 function showHeaderFooter() {
-    section.querySelector("header").classList.remove("hidden");
-    section.querySelector("footer").classList.remove("hidden");
-  }
-  
-  // Function to hide the header and footer with transition
-  function hideHeaderFooter() {
-    section.querySelector("header").classList.add("hidden");
-    section.querySelector("footer").classList.add("hidden");
-  }
-  
-  // Function to reset the timer and show the header and footer
-  function resetTimer() {
-    clearTimeout(timer);
-    showHeaderFooter();
-    timer = setTimeout(hideHeaderFooter, 5000);
-  }
+    header.style.display = 'block';
+    footer.style.display = 'block';
+    clearTimeout(timeout);
+    timeout = setTimeout(hideHeaderFooter, 3000);
+}
 
+page.addEventListener('mousemove', showHeaderFooter);
+page.addEventListener('click', showHeaderFooter);
 
-
-
-// let popUp = document.getElementById('popUp');
-// let worning = document.getElementById('worning');
-//
-// document.getElementById('openerBtn').addEventListener('click', function() {
-//     if (popUp.style.display="none") {
-//         popUp.style.display="block";
-//     }
-// });
-//
-// document.getElementById('closeBtn').addEventListener('click', function() {
-//     if (popUp.style.display="block") {
-//         popUp.style.display="none";
-//     }
-// });
-// document.getElementById('submitBtn').addEventListener('click', function() {
-//     let inputValue = document.getElementById('formInput');
-//     if (inputValue.value == "") {
-//         worning.style.display="block";
-//     }
-//     else{
-//         if (worning.style.display="block") {
-//             worning.style.display="none";
-//         }
-//     }
-//
-// });
+timeout = setTimeout(hideHeaderFooter, 3000);

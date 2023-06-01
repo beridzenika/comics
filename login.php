@@ -16,7 +16,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['username'] = $user['username'];
-                $_SESSION['email'] = $user['email'];
+                $_SESSION['userid'] = $user['id'];
                 $_SESSION['logedin'] = true;
 
                 if ($user['is_admin']) {

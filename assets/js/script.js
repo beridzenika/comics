@@ -20,9 +20,6 @@ for (let i = 0; i < elements.length; i++) {
         active = i + 1;
         document.querySelector('#rate-star').value = active;
 
-        ratedArray.push({ 'issue': '', 'number': ''});
-        updateRating();
-
         document.querySelector('#rateform').submit();
     });
 
@@ -42,10 +39,6 @@ for (let i = 0; i < elements.length; i++) {
             elements[j].classList.remove("checked");
         }
     });
-}
-function updateRating() {
-    json = JSON.stringify(ratedArray);
-    document.getElementById("user-rate").value = json;
 }
 
 //pages image generation

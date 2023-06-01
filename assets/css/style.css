@@ -251,8 +251,7 @@ body section.page .page {
 }
 body section.page .page img {
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   max-width: 100%;
 }
 body section.page footer {
@@ -395,4 +394,6 @@ body footer .copy-right {
   body .comic-container {
     grid-template-columns: repeat(1, 1fr);
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

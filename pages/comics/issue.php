@@ -5,7 +5,7 @@ include('helpers/functions.php');
 session_start();
 
 $id = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : null;
-$email = isset($_SESSION['email']) && $_SESSION['email'] ? $_SESSION['email'] : null;
+$userId = isset($_SESSION['userid']) && $_SESSION['userid'] ? $_SESSION['userid'] : null;
 
 //select
 if($id) {
@@ -17,51 +17,39 @@ if($id) {
 } else {
     die('invalid id');
 }
-
 //rating
 if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
-    $user_query = $connection->query('SELECT `rates` FROM `users` WHERE email = "'.$email.'"');
-    $user = $user_query->fetch_assoc();
+    $rates_query = $connection->query('SELECT * FROM rates WHERE user_id = "'.$userId.'" AND book = "'.$id.'"');
+    $rate_table = $rates_query->fetch_assoc();
 
     if(isset($_POST['starsNum'])) {
 
         $star = isset($_POST['starsNum']) ? $_POST['starsNum'] : '' ;
         $rating = isset($_POST['peopleRating']) ? $_POST['peopleRating'] : '' ;
-        $userRate = isset($user['rates']) ? $user['rates'] : '';
 
-        $userRateArray = json_decode($userRate, true);
-
-        foreach ($userRateArray as $key => $element) {
-            if ($element['issue'] == $id) {
-                $number = $element['number'];
-                unset($userRateArray[$key]);
-            }
-        }
-        $ratedArray[] = ['issue' => $id, 'number' => $star];
-
-        if (isset($ratedArray)) {
-            if ($userRateArray !== null) {
-                $mergedArray = array_merge($userRateArray, $ratedArray);
-                $userRate = json_encode($mergedArray);
-            } else {
-                $userRate = json_encode($ratedArray);
-            }
-        }
-        if(isset($number)){
-            $stars = $book['stars'] + $star - $number;
-            $peopleRating = $book['peopleRating'];
+        if (isset($rate_table)) {
+            $rateQuery = $connection->prepare('UPDATE rates SET rate = ? WHERE id = "' .$rate_table['id'].'"');
+            $rateQuery->bind_param('i', $star);
         } else {
-            $stars = $book['stars'] + $star;
-            $peopleRating = $book['peopleRating'] + 1;
+            $rateQuery = $connection->prepare("INSERT INTO rates (`user_id`, `book`, `rate`) VALUES (?,?,?)");
+            $rateQuery->bind_param('iii', $userId, $id, $star);
         }
+
+        if (!$rateQuery->execute()) {
+            die('Error');
+        }
+
+        $bookRates = $connection->query('SELECT rate FROM rates WHERE book = '.$id);
+        $bookRates = $bookRates->fetch_all(MYSQLI_ASSOC);
+        $bookRates = array_column($bookRates, 'rate');
+        $stars = array_sum($bookRates);
+        $peopleRating = count($bookRates);
+
 
         $bookQuery = $connection->prepare("UPDATE books SET stars = ?, peopleRating = ? WHERE id = ?");
         $bookQuery->bind_param('iis', $stars, $peopleRating, $id);
-        
-        $userQuery = $connection->prepare("UPDATE users SET rates = ? WHERE email = ?");
-        $userQuery->bind_param('ss', $userRate, $email);
-        
-        if($userQuery->execute() && $bookQuery->execute()) {
+
+        if($bookQuery->execute()) {
             header('Location: ?action=issue&id=' . $id);
         } else {
             print_r($connection->error);

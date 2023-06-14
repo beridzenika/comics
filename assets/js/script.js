@@ -42,6 +42,9 @@ for (let i = 0; i < elements.length; i++) {
 }
 
 //pages image generation
+let pageImage = document.getElementById('page_image_container');
+
+
 let leftArrow = document.getElementById("left_arrow");
 let rightArrow = document.getElementById("right_arrow");
 let jsonPages = document.getElementById('comicPages');
@@ -58,7 +61,7 @@ let pn = 0;
 
 renderPage()
 function renderPage() {
-    document.getElementById("page_image_container").innerHTML = getImage(pageArrey[pn].image);
+    pageImage.innerHTML = getImage(pageArrey[pn].image);
 }
 
 function getImage(image)
@@ -97,4 +100,23 @@ function showHeaderFooter() {
 page.addEventListener('mousemove', showHeaderFooter);
 page.addEventListener('click', showHeaderFooter);
 
-timeout = setTimeout(hideHeaderFooter, 3000);
+//zoom in/out
+
+let zoomIcons = document.querySelectorAll('.btn-zoom');
+
+for (let i = 0; i < zoomIcons.length; i++) {
+    zoomIcons[i].addEventListener('click', function() {
+        let zoomInIcon = document.querySelector('.btn-zoom.zoom-in');
+        let zoomOutIcon = document.querySelector('.btn-zoom.zoom-out');
+
+        if (this.classList.contains('zoom-in')) {
+            zoomInIcon.style.display = 'none';
+            zoomOutIcon.style.display = 'block';
+            pageImage.classList.add("zoomed");
+        } else {
+            zoomInIcon.style.display = 'block';
+            zoomOutIcon.style.display = 'none';
+            pageImage.classList.remove("zoomed");
+        }
+    });
+}

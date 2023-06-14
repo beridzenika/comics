@@ -10,7 +10,7 @@ $menu = $query->fetch_all(MYSQLI_ASSOC);
 ?>
 <header>
     <div class="logo">
-        <a href="/">
+        <a href="/comics">
             <span>ჭაბუკის</span>
             <span>კომიქსები</span>
         </a>

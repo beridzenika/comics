@@ -1,7 +1,7 @@
 <footer>
     <div class="container">
         <div class="logo">
-            <a href="/">
+            <a href="/comics">
                 <span>ჭაბუკის</span>
                 <span>კომიქსები</span>
             </a>

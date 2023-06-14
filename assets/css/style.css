@@ -106,27 +106,44 @@ body menu ul .active a {
   color: #fff;
 }
 body .issue-nav {
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 5px;
   background-color: #040A0A;
+  padding: 0 20px;
+}
+body .issue-nav .issues {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
 }
+body .issue-nav .issues a {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+body .issue-nav .issues a span {
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+}
+body .issue-nav .issues a svg {
+  padding: 10px 0;
+  width: 10px;
+}
 body .issue-nav a {
+  text-decoration: none;
   color: #005157;
   fill: #005157;
-  display: flex;
-  text-decoration: none;
-  cursor: pointer;
-  padding: 0 10px;
-}
-body .issue-nav a span {
-  padding: 0 5px;
 }
 body .issue-nav a:hover {
   color: #fff;
   fill: #fff;
   transition: 0.2s;
+}
+body .issue-nav a svg {
+  padding: 10px;
 }
 body main {
   margin: 50px auto;
@@ -251,12 +268,18 @@ body section.page .page {
 }
 body section.page .page img {
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   max-width: 100%;
+}
+body section.page .zoomed img {
+  height: 2500px;
+  max-width: none;
 }
 body section.page footer {
   display: block;
   position: absolute;
+  position: fixed;
   bottom: 0;
   text-align: center;
   background: rgba(0, 0, 0, 0.8509803922);
@@ -274,8 +297,16 @@ body section.page footer nav {
   width: 60%;
   margin: auto;
 }
-body section.page footer nav span svg {
+body section.page footer nav li {
+  list-style-type: none;
+}
+body section.page footer nav .zoom-out {
+  display: none;
+}
+body section.page footer nav svg {
   fill: #fff;
+  width: 32px;
+  height: 32px;
 }
 body .login-contianer {
   display: flex;
@@ -394,6 +425,4 @@ body footer .copy-right {
   body .comic-container {
     grid-template-columns: repeat(1, 1fr);
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

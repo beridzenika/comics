@@ -71,18 +71,22 @@ $pageTitle = $book['title'] . " | კომიქსის სერია";
     <?php include('components/header.php')?>
 
     <div class="issue-nav">
-        <?php if ($book['prev_issue'] > 0) :?>
-            <a class="left_arrow" href="?action=issue&id=<?=$book['prev_issue']?>">
-                <?php include 'assets/icons/arrow.svg'?>
-                <span class="text">წინა</span>
-            </a>
-        <?php endif?>
-        <?php if ($book['next_issue'] > 0) :?>
-            <a class="right_arrow" href="?action=issue&id=<?=$book['next_issue']?>">
-                <span class="text">შემდეგი</span>
-                <?php include 'assets/icons/arrow.svg'?>
-            </a>
-        <?php endif?>
+        <div class="issues">
+            <?php if ($book['prev_issue'] > 0) :?>
+                <a class="left_arrow" href="?action=issue&id=<?=$book['prev_issue']?>">
+                    <?php include 'assets/icons/arrow.svg'?>
+                    <span class="text">წინა</span>
+                </a>
+            <?php endif?>
+            <?php if ($book['next_issue'] > 0) :?>
+                <a class="right_arrow" href="?action=issue&id=<?=$book['next_issue']?>">
+                    <span class="text">შემდეგი</span>
+                    <?php include 'assets/icons/arrow.svg'?>
+                </a>
+            <?php endif?>
+        </div>
+        <a href="https://www.facebook.com/share.php?u=<?= urlencode($_SERVER['REQUEST_URI']) ?>"><?php include 'assets/icons/facebook.svg'?></a>
+        <a href="https://twitter.com/share?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>"><?php include 'assets/icons/twitter.svg'?></a>
     </div>
     
     <main>

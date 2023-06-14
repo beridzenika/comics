@@ -122,26 +122,49 @@ body{
             }
         }
     }
-    .issue-nav{
-        margin: auto;
+    .issue-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: 5px;
         background-color: #040A0A;
-        display: flex;
-        justify-content: center;
-        a{
+        padding: 0 20px;
+      
+        .issues {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        
+            a {
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+        
+                span {
+                padding: 0 5px;
+                display: flex;
+                align-items: center;
+                }
+                svg {
+                    padding: 10px 0;
+                    width: 10px;
+                }
+            }
+        }
+      
+        a {
+            text-decoration: none;
             color: $gray;
             fill: $gray;
-            display: flex;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 0 10px;
-            span{
-                padding: 0 5px;
-            }
+      
             &:hover {
                 color: $white;
                 fill: $white;
                 transition: 0.2s;
+            }
+      
+            svg {
+                padding: 10px;
             }
         }
     }
@@ -191,7 +214,6 @@ body{
 
         .issue-holder {
             margin: 30px 20px;
-        
             .issue-info {
               display: flex;
               align-items: center;
@@ -254,7 +276,6 @@ body{
             h3{
                 font-size: 20px;
             }
-            
         }
         .page{
             background-color: $black;
@@ -267,9 +288,16 @@ body{
                 max-width: 100%;
             }
         }
+        .zoomed{
+            img{
+                height: 2500px;
+                max-width: none;
+            }
+        }
         footer{
             display: block;
             position: absolute;
+            position: fixed;
             bottom: 0;
             text-align: center;
             @include comic_nav_box();
@@ -278,11 +306,16 @@ body{
                 justify-content: space-around;
                 width: 60%;
                 margin: auto;
-                span{
-                    svg{
-                        fill: $white;
-                        
-                    }
+                li{
+                    list-style-type: none;
+                }
+                .zoom-out{
+                    display: none;
+                }
+                svg{
+                    fill: $white;
+                    width: 32px;
+                    height: 32px;
                 }
             }
         }

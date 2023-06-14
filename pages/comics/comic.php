@@ -33,18 +33,17 @@ $pageTitle = $book['title'];
         <footer id="footer">
             <nav>
                 <span id="left_arrow" class="left_arrow"><?php include 'assets/icons/arrow.svg'?></span>
-                <span id="right_arrow" class="right_arrow"><?php include 'assets/icons/arrow.svg'?></span>
-                <!-- <ul>
-                    <li class="icon btn-panel">
+                <ul>
+                    <!-- <li class="icon btn-panel">
                         panel
-                    </li>
-                    <li class="icon btn-zoom">
-                        zoom
-                    </li>
-                    <li class="icon btn-screen">
+                    </li> -->
+                    <li class="btn-zoom zoom-in"><?php include 'assets/icons/zoom-in-icon.svg'?></li>
+                    <li class="btn-zoom zoom-out"><?php include 'assets/icons/zoom-out-icon.svg'?></li>
+                    <!-- <li class="icon btn-screen">
                         screen
-                    </li>
-                </ul> -->
+                    </li> -->
+                </ul>
+                <span id="right_arrow" class="right_arrow"><?php include 'assets/icons/arrow.svg'?></span>
             </nav>
         </footer>
     </section>

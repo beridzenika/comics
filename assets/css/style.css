@@ -243,11 +243,11 @@ body main .issue-holder .issue-link a:hover {
 body section.page header {
   display: block;
   text-align: center;
-  position: fixed;
   color: #fff;
   box-sizing: border-box;
   max-height: 120px;
   top: 0;
+  position: fixed;
   background: rgba(0, 0, 0, 0.8509803922);
   overflow-y: hidden;
   width: 100%;
@@ -256,6 +256,14 @@ body section.page header {
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: linear;
+}
+body section.page header svg {
+  fill: #fff;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  left: 15;
+  transform: scaleX(-1);
 }
 body section.page header h3 {
   font-size: 20px;
@@ -419,6 +427,9 @@ body footer .copy-right {
   body .comic-container {
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
+  }
+  body section.page header svg {
+    display: none;
   }
 }
 @media only screen and (max-width: 400px) {

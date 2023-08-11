@@ -25,6 +25,7 @@ $pageTitle = $book['title'];
 
     <section class="page" id="comic-page">
         <header id="header">
+        <a href="?action=issue&id=<?= $id ?>"><?php include 'assets/icons/arrow.svg'?></a>
             <h3><?=$book['title']?></h3>
         </header>
         <div id="page_image_container" class="page">

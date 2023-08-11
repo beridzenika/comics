@@ -151,18 +151,15 @@ body{
                 }
             }
         }
-      
         a {
             text-decoration: none;
             color: $gray;
             fill: $gray;
-      
             &:hover {
                 color: $white;
                 fill: $white;
                 transition: 0.2s;
             }
-      
             svg {
                 padding: 10px;
             }
@@ -267,12 +264,20 @@ body{
         header{
             display: block;
             text-align: center;
-            position: fixed;
             color: $white;
             box-sizing: border-box;
             max-height: 120px;
             top: 0;
+            position: fixed;
             @include comic_nav_box();
+            svg{
+                fill: $white;
+                width: 26px;
+                height: 26px;
+                position: absolute;
+                left: 15;
+                transform: scaleX(-1);
+            }
             h3{
                 font-size: 20px;
             }
@@ -428,6 +433,13 @@ body{
         .comic-container{
             grid-template-columns: repeat(2,1fr);
             width: 100%;
+        }
+        section.page{
+            header{
+                svg{
+                    display: none;
+                }
+            }
         }
     }
     @media only screen and (max-width:400px) {

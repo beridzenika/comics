@@ -8,12 +8,12 @@ isAdmin();
 // insert
 if(isset($_POST['action']) && $_POST['action'] == 'insert') {
 
-    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue) = actionData($connection);
+    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price) = actionData($connection);
 
     if($title && $published && $writer && $artist && $description && $image && $pages) {
 
-        $query = $connection->prepare("INSERT INTO `books` (`title`, `published`, `writer`, `artist`, `description`, `image`, `status`, `pages`, `prev_issue`, `next_issue`) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $query->bind_param('ssssssssss',$title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue);
+        $query = $connection->prepare("INSERT INTO `books` (`title`, `published`, `writer`, `artist`, `description`, `image`, `status`, `pages`, `prev_issue`, `next_issue`, `price`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $query->bind_param('ssssssssssd',$title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price);
         if($query->execute()) {
             header('Location: index.php?user=admin&page=comics');
         } else {
@@ -70,8 +70,12 @@ $pageTitle = "ჭაბუკის კომიქსები | ადმი�
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="">ფასი</label>
+                        <input type="text" name="price">
+                    </div>
+                    <div class="form-group">
                         <label for="">აღწერილობა</label>
-                        <textarea name="description" id="" cols="30" rows="10"></textarea>
+                        <textarea name="description" id="" cols="30" rows="7"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">სტატუსი</label>

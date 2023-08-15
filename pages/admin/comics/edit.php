@@ -21,12 +21,12 @@ if($id) {
 // update
 if(isset($_POST['action']) && $_POST['action'] == 'update') {
 
-    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue) = actionData($connection);
+    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price) = actionData($connection);
 
     if($title && $published && $writer && $artist && $description && $image) {
 
-        $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ?, pages = ?, prev_issue = ?, next_issue = ? WHERE id = ?");
-        $query->bind_param('sssssssssss', $title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $id);
+        $query = $connection->prepare("UPDATE books SET title = ?, published = ?, writer = ?, artist = ?, description = ?, image = ?, status = ?, pages = ?, prev_issue = ?, next_issue = ?, price = ? WHERE id = ?");
+        $query->bind_param('ssssssssssds', $title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price, $id);
         if($query->execute()) {
             header('Location: index.php?user=admin&page=comics');
         } else {
@@ -83,8 +83,12 @@ $pageTitle = "ჭაბუკის კომიქსები | ადმი�
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="">ფასი</label>
+                        <input type="text" name="price" value="<?= $book['price'] ?>">
+                    </div>
+                    <div class="form-group">
                         <label for="">აღწერილობა</label>
-                        <textarea name="description" id="" cols="30" rows="10"><?= $book['description'] ?></textarea>
+                        <textarea name="description" id="" cols="30" rows="7"><?= $book['description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">სტატუსი</label>

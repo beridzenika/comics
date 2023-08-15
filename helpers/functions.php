@@ -11,8 +11,9 @@ function actionData($connection) {
     $pages = isset($_POST['images']) ? json_encode($_POST['images']) : '' ;
     $prevIssue = isset($_POST['prev_issue']) ? $_POST['prev_issue'] : '' ;
     $nextIssue = isset($_POST['next_issue']) ? $_POST['next_issue'] : '' ;
+    $price = isset($_POST['price']) ? $_POST['price'] : '' ;
 
-    return array($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue);
+    return array($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price);
 }
 
 //search
@@ -24,18 +25,21 @@ function search($attach) {
     }
     return $titleLike;
 }
+//condition
+function condition($section) {
+    if(isset($section['condition']) && $section['condition']) {
+        $condition = "AND " . $section['condition'] . " ";
+    } else {
+        $condition = '';
+    }
+    return $condition;
+}
 //logged admin/guest
 function isAdmin() {
     if( !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
         header('location: index.php');
     }
 }
-//
-//function isGuest() {
-//    if( isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
-//        header('location: index.php');
-//    }
-//}
 
 
 //sort

@@ -111,7 +111,7 @@ body main .container-header h2 {
   font-weight: bolder;
   display: inline-block;
 }
-body main a, body main button {
+body main a.edit, body main a.btn, body main button {
   font-size: 16px;
   text-decoration: none;
   border: none;
@@ -121,7 +121,7 @@ body main a, body main button {
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
 }
-body main a:hover, body main button:hover {
+body main a.edit:hover, body main a.btn:hover, body main button:hover {
   background-color: #005157;
   transition: 0.2s;
 }
@@ -282,6 +282,28 @@ body main .overlay {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5019607843);
   z-index: 9998;
+}
+body .paging {
+  text-align: center;
+  padding-bottom: 20px;
+}
+body .paging a {
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  background-color: #00BCC9;
+  border-radius: 5px;
+  color: white;
+  font-family: "Noto Sans Georgian", sans-serif;
+  padding: 5px 15px;
+}
+body .paging a:hover {
+  background-color: #005157;
+  transition: 0.2s;
+}
+body .paging a.inactive {
+  background-color: #005157;
 }
 @media only screen and (min-width: 600px) {
   body .right-h {

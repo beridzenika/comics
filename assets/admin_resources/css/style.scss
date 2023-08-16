@@ -124,7 +124,7 @@ body{
                 display: inline-block;
             }
         }
-        a, button{
+        a.edit, a.btn, button{
             @include button();
             &:hover {
                 background-color: $gray;
@@ -264,7 +264,21 @@ body{
             z-index: 9998;
         }
     }
-
+    .paging{
+        text-align: center;
+        padding-bottom: 20px;
+        a{
+            @include button();
+            padding: 5px 15px;
+            &:hover {
+                background-color: $gray;
+                transition: 0.2s;
+            }
+        }
+        a.inactive{
+            background-color: $gray;
+        }
+    }
 
 
 

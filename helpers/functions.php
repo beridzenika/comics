@@ -25,6 +25,16 @@ function search($attach) {
     }
     return $titleLike;
 }
+//search relocate
+function searchRelocate ($count, $user, $id) {
+    if (isset($count['cnt']) && $count['cnt'] == 1) {
+        if (isset($user) && $user == 'admin') {
+            header('Location: index.php?user=admin&page=comics&action=edit&id='.$id);
+        } else {
+            header('Location: index.php?action=issue&id='.$id);
+        }
+    }
+}
 //condition
 function condition($section) {
     if(isset($section['condition']) && $section['condition']) {
@@ -38,18 +48,5 @@ function condition($section) {
 function isAdmin() {
     if( !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
         header('location: index.php');
-    }
-}
-
-
-//sort
-function GetSortBy($SortID) {
-    switch ($SortID) {
-        case 1: return 'id ASC';
-        case 2: return 'title DESC';
-        case 3: return 'title ASC';
-        case 4:  return 'price DESC';
-        case 5: return 'price ASC';
-        default: return 'id DESC';
     }
 }

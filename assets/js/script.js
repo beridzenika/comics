@@ -10,6 +10,34 @@ if (logout){
     logout.addEventListener("click", confirmation);
 }
 
+//see more btn
+// function loadMore(sectionId) {
+//     var section = document.getElementById('comic-container-'+sectionId);
+//     var moreBtn = document.getElementById('more-btn-'+sectionId);
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('GET', 'test.php', true);
+//     xhr.onload = function () {
+//         if (this.status == 200) {
+//             moreBtn.remove();
+//             section.innerHTML += this.responseText;
+//         }
+//     }
+//     xhr.send();
+// }
+
+//rate star ajax
+// function ajaxRate (starsNum) {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('GET', 'ajax/star_rate.php?starsNum='+starsNum, true);
+//     xhr.onload = function () {
+//         if (this.status == 200) {
+//             document.innerHTML += this.responseText;
+//         }
+//     }
+//     xhr.send();
+// }
+
+
 //rate star glow
 let elements = document.querySelectorAll(".fa");
 let active = document.querySelectorAll(".checked").length;
@@ -41,82 +69,81 @@ for (let i = 0; i < elements.length; i++) {
     });
 }
 
-//pages image generation
-let pageImage = document.getElementById('page_image_container');
+// //pages image generation
+// let pageImage = document.getElementById('page_image_container');
 
+// let leftArrow = document.getElementById("left_arrow");
+// let rightArrow = document.getElementById("right_arrow");
+// let jsonPages = document.getElementById('comicPages');
+// let pageArrey = [];
 
-let leftArrow = document.getElementById("left_arrow");
-let rightArrow = document.getElementById("right_arrow");
-let jsonPages = document.getElementById('comicPages');
-let pageArrey = [];
+// if (jsonPages) {
+//     pages = JSON.parse(jsonPages.value);
+//     pages.forEach(function (value, key) {
+//         pageArrey[key] = {'image': value};
+//     });
+// }
+// let pageLength = pageArrey.length-1;
+// let pn = 0;
 
-if (jsonPages) {
-    pages = JSON.parse(jsonPages.value);
-    pages.forEach(function (value, key) {
-        pageArrey[key] = {'image': value};
-    });
-}
-let pageLength = pageArrey.length-1;
-let pn = 0;
+// renderPage()
+// function renderPage() {
+//     pageImage.innerHTML = getImage(pageArrey[pn].image);
+// }
 
-renderPage()
-function renderPage() {
-    pageImage.innerHTML = getImage(pageArrey[pn].image);
-}
-
-function getImage(image)
-{
-    return `<img src="${image}" alt="">`;
-}
-rightArrow.addEventListener("click", function () {
-    pn = (pn != pageLength) ? pn + 1 : 0;
+// function getImage(image)
+// {
+//     return `<img src="${image}" alt="">`;
+// }
+// rightArrow.addEventListener("click", function () {
+//     pn = (pn != pageLength) ? pn + 1 : 0;
     
-    renderPage();
-});
-leftArrow.addEventListener("click", function () {
-    pn = (pn != 0) ? pn - 1 : 0;
+//     renderPage();
+// });
+// leftArrow.addEventListener("click", function () {
+//     pn = (pn != 0) ? pn - 1 : 0;
     
-    renderPage();
-});
+//     renderPage();
+// });
 
-// header/footer show/hiding
-let page = document.getElementById('comic-page');
-let header = document.getElementById('header');
-let footer = document.getElementById('footer');
-let timeout;
+// // header/footer show/hiding
+// let page = document.getElementById('comic-page');
+// let header = document.getElementById('header');
+// let footer = document.getElementById('footer');
+// let timeout;
 
-function hideHeaderFooter() {
-    header.style.display = 'none';
-    footer.style.display = 'none';
-}
+// function hideHeaderFooter() {
+//     header.style.display = 'none';
+//     footer.style.display = 'none';
+// }
 
-function showHeaderFooter() {
-    header.style.display = 'block';
-    footer.style.display = 'block';
-    clearTimeout(timeout);
-    timeout = setTimeout(hideHeaderFooter, 3000);
-}
+// function showHeaderFooter() {
+//     header.style.display = 'block';
+//     footer.style.display = 'block';
+//     clearTimeout(timeout);
+//     timeout = setTimeout(hideHeaderFooter, 3000);
+// }
 
-page.addEventListener('mousemove', showHeaderFooter);
-page.addEventListener('click', showHeaderFooter);
+// page.addEventListener('mousemove', showHeaderFooter);
+// page.addEventListener('click', showHeaderFooter);
 
-//zoom in/out
+// //zoom in/out
 
-let zoomIcons = document.querySelectorAll('.btn-zoom');
+// let zoomIcons = document.querySelectorAll('.btn-zoom');
 
-for (let i = 0; i < zoomIcons.length; i++) {
-    zoomIcons[i].addEventListener('click', function() {
-        let zoomInIcon = document.querySelector('.btn-zoom.zoom-in');
-        let zoomOutIcon = document.querySelector('.btn-zoom.zoom-out');
+// for (let i = 0; i < zoomIcons.length; i++) {
+//     zoomIcons[i].addEventListener('click', function() {
+//         let zoomInIcon = document.querySelector('.btn-zoom.zoom-in');
+//         let zoomOutIcon = document.querySelector('.btn-zoom.zoom-out');
 
-        if (this.classList.contains('zoom-in')) {
-            zoomInIcon.style.display = 'none';
-            zoomOutIcon.style.display = 'block';
-            pageImage.classList.add("zoomed");
-        } else {
-            zoomInIcon.style.display = 'block';
-            zoomOutIcon.style.display = 'none';
-            pageImage.classList.remove("zoomed");
-        }
-    });
-}
+//         if (this.classList.contains('zoom-in')) {
+//             zoomInIcon.style.display = 'none';
+//             zoomOutIcon.style.display = 'block';
+//             pageImage.classList.add("zoomed");
+//         } else {
+//             zoomInIcon.style.display = 'block';
+//             zoomOutIcon.style.display = 'none';
+//             pageImage.classList.remove("zoomed");
+//         }
+//     });
+// }

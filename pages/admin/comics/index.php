@@ -6,12 +6,12 @@ session_start();
 isAdmin();
 
 //paging
-$limit = 10;
+$limit = 5;
 $offset = '';
 if(isset($_GET['pg']) && $_GET['pg'] && $_GET['pg'] > 1) {
     $offset = ' OFFSET ' . ($_GET['pg'] - 1) * $limit;
 }
-$total = $connection->query("SELECT COUNT(*) as cnt FROM books");
+$total = $connection->query("SELECT COUNT(*) as cnt FROM books " . search('WHERE'));
 $count = $total->fetch_assoc();
 $pageNumber = ceil($count['cnt'] / $limit);
 
@@ -43,8 +43,14 @@ if(isset($_POST['action']) && $_POST['action'] == 'status') {
 }
 
 //select
-$query = $connection->query("SELECT * FROM books " . search("WHERE") . " ORDER BY books.id DESC LIMIT ". $limit ."". $offset);
+$query = $connection->query("SELECT * FROM books " . search('WHERE') . " ORDER BY books.id DESC LIMIT ". $limit ."". $offset);
 $books = $query->fetch_all(MYSQLI_ASSOC);
+
+//search relocate
+foreach ($books as $book) {
+    $user = isset($_GET['user']) ? $_GET['user'] : '';
+    searchRelocate($count, $user, $book['id']);
+}
 
 $pageTitle = "ჭაბუკის კომიქსები | ადმინი";
 ?>
@@ -92,7 +98,7 @@ $pageTitle = "ჭაბუკის კომიქსები | ადმი�
         if ($count['cnt'] > $limit) :
             for($i = 1; $i <= $pageNumber; $i++): 
         ?>
-            <a href="?user=admin&page=comics&pg=<?= $i ?>" class="btn <?= isset($_GET['pg']) && $_GET['pg'] && $_GET['pg'] == $i ? 'active' : 'inactive' ?>"><?= $i ?></a>
+            <a href="?user=admin&page=comics&<?=isset($_GET['search']) && $_GET['search'] ? 'search='.$_GET['search'].'&' : ''?>pg=<?= $i ?>" class="btn <?= (isset($_GET['pg']) && $_GET['pg'] && $_GET['pg'] == $i) || (!isset($_GET['pg']) && $i == 1) ? 'active' : 'inactive' ?>"><?= $i ?></a>
         <?php 
             endfor; 
         endif;

@@ -21,7 +21,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
 
                 if ($user['is_admin']) {
                     $_SESSION['is_admin'] = 1;
-                    header('location: index.php?user=admin&page=comics');
+                    header('location: index.php?user=admin');
                 } else {
                     header('location: index.php?');
                 }

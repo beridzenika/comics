@@ -184,8 +184,20 @@ body main .comic-container .comic-box .text a {
   color: #071111;
   font-weight: 800;
 }
-body main .comic-container .comic-box .rating svg {
-  width: 20px;
+body main button {
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  background-color: #F23005;
+  border-radius: 5px;
+  color: white;
+  font-family: "Noto Sans Georgian", sans-serif;
+  padding: 15px 40px;
+}
+body main button:hover {
+  background-color: #c71506;
+  transition: 0.2s;
 }
 body main .issue-holder {
   margin: 30px 20px;

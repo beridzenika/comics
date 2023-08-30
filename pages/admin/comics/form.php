@@ -97,9 +97,6 @@ $pageTitle = "ჭაბუკის კომიქსები | ადმი�
             </div>
             <div class="form-sub" id="formSub">
                 <input type="hidden" name="action" value="insert">
-            </div>
-            <div class="form-sub" id="formSub">
-                <input type="hidden" name="action" value="insert">
                 <button class="btn submit">ატვირთვა</button>
             </div>
         </form>

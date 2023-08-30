@@ -17,6 +17,7 @@ if($id) {
 } else {
     die('invalid id');
 }
+
 //rating
 if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
     $rates_query = $connection->query('SELECT * FROM rates WHERE user_id = "'.$userId.'" AND book = "'.$id.'"');
@@ -57,12 +58,14 @@ if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
         }
     }
 }
+
 //average stars
 if($book['stars'] != 0 && $book['peopleRating'] != 0) {
     $ratedStars = $book['stars'] / $book['peopleRating'];
 } else {
     $ratedStars = $book['stars'];
 }
+
 //head
 $pageTitle = $book['title'] . " | კომიქსის სერია";
 ?>
@@ -98,7 +101,7 @@ $pageTitle = $book['title'] . " | კომიქსის სერია";
                         <input type="hidden" name="starsNum" id="rate-star">
                         <div class="rating">
                             <?php for($i = 1; $i <= 5; $i++) : ?>
-                                <span class="fa fa-star <?= $ratedStars >= $i ? "checked" : "" ?>"><?php include 'assets/icons/star.svg'?></span>
+                                <span class="fa fa-star <?= $ratedStars >= $i ? "checked" : "" ?>" onclick="ajaxRate()"><?php include 'assets/icons/star.svg'?></span>
                             <?php endfor ?>
                         </div>
                     </form>

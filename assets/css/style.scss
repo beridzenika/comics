@@ -201,11 +201,15 @@ body{
                         font-weight: 800;
                     }
                 }
-                .rating {
-                    svg {
-                        width: 20px;
-                    }
-                }
+            }
+
+        }
+        button{
+            @include button($orange);
+            padding: 15px 40px;
+            &:hover {
+                background-color: #c71506;
+                transition: 0.2s;
             }
         }
 

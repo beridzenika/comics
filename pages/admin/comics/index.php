@@ -8,7 +8,8 @@ isAdmin();
 //paging
 $limit = 5;
 $offset = '';
-if(isset($_GET['pg']) && $_GET['pg'] && $_GET['pg'] > 1) {
+$pg = isset($_GET['pg']) && $_GET['pg'] ? $_GET['pg'] : '';
+if($pg > 1) {
     $offset = ' OFFSET ' . ($_GET['pg'] - 1) * $limit;
 }
 $total = $connection->query("SELECT COUNT(*) as cnt FROM books " . search('WHERE'));
@@ -35,7 +36,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'status') {
     print_r($query);
     $query->bind_param('s', $status);
     if($query->execute()) {
-        header('Location: index.php?user=admin&page=comics');
+        header('Location: index.php?user=admin&page=comics&pg='.$pg);
     } else {
         print_r($connection->error);
         echo "Error";

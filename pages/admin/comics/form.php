@@ -8,7 +8,12 @@ isAdmin();
 // insert
 if(isset($_POST['action']) && $_POST['action'] == 'insert') {
 
-    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price) = actionData($connection);
+    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $price) = actionData($connection);
+    
+    $prevIssue = '';
+    otherIssues($connection, $title, "<", "DESC", $prevIssue);
+    $nextIssue = '';
+    otherIssues($connection, $title, ">", "ASC", $nextIssue);
 
     if($title && $published && $writer && $artist && $description && $image && $pages) {
 
@@ -59,7 +64,7 @@ $pageTitle = "ჭაბუკის კომიქსები | ადმი�
                         <label for="">მხატვარი</label>
                         <input type="text" name="artist">
                     </div>
-                    <div class="form-group shared">
+                    <!-- <div class="form-group shared">
                         <div class="child-group">
                             <label for="">წინა</label>
                             <input type="text" name="prev_issue">
@@ -68,7 +73,7 @@ $pageTitle = "ჭაბუკის კომიქსები | ადმი�
                             <label for="">შემდეგი</label>
                             <input type="text" name="next_issue">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="">ფასი</label>
                         <input type="text" name="price">

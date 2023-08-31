@@ -40,20 +40,8 @@ $pageTitle = "ჭაბუკის კომიქსები";
             if($booksNum > 0):
             ?>
             <h2><?=$section['title']?></h2>
-            <div class="comic-container">
-                <?php foreach($books as $book): ?>
-                <div class="comic-box">
-                    <a class="img-link" href="?action=issue&id=<?=$book['id']?>">
-                        <img src="<?=$book['image']?>" alt="">
-                    </a>
-                    <div class="text">
-                        <a href="?action=issue&id=<?=$book['id']?>">
-                            <span class="title"><?=$book['title']?></span>
-                        </a>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-            </div>
+            
+            <?php include('components/comic_container.php')?>
             <?php
                 if ($booksNum > $limit):
             ?>

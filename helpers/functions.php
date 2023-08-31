@@ -9,11 +9,9 @@ function actionData($connection) {
     $image = isset($_POST['image']) ? $_POST['image'] : '' ;
     $status = isset($_POST['status']) ? $_POST['status'] : '' ;
     $pages = isset($_POST['images']) ? json_encode($_POST['images']) : '' ;
-    $prevIssue = isset($_POST['prev_issue']) ? $_POST['prev_issue'] : '' ;
-    $nextIssue = isset($_POST['next_issue']) ? $_POST['next_issue'] : '' ;
     $price = isset($_POST['price']) ? $_POST['price'] : '' ;
 
-    return array($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price);
+    return array($title, $published, $writer, $artist, $description, $image, $status, $pages, $price);
 }
 
 //search
@@ -49,4 +47,11 @@ function isAdmin() {
     if( !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
         header('location: index.php');
     }
+}
+//prev/next issue generator
+function otherIssues($connection, $title, $sign, $orderBy, &$issueName) {
+    $similTitle = explode('#',$title)[0];
+    $query = $connection->query("SELECT * FROM `books` WHERE title LIKE '" . $similTitle . "%' AND title " . $sign . " '" . $title . "' ORDER BY title " . $orderBy . " LIMIT 1");
+    $issue = $query->fetch_assoc();
+    $issueName = isset($issue) && $issue ? $issue['id'] : 0;
 }

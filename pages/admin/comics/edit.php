@@ -17,11 +17,16 @@ if($id) {
 } else {
     die('invalid id');
 }
+//issues update
+otherIssues($connection, $book['title'], "<", "DESC", $book['prev_issue']);
+otherIssues($connection, $book['title'], ">", "ASC", $book['next_issue']);
 
 // update
 if(isset($_POST['action']) && $_POST['action'] == 'update') {
 
-    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $prevIssue, $nextIssue, $price) = actionData($connection);
+    list($title, $published, $writer, $artist, $description, $image, $status, $pages, $price) = actionData($connection);
+    $prevIssue = isset($_POST['prev_issue']) ? $_POST['prev_issue'] : '' ;
+    $nextIssue = isset($_POST['next_issue']) ? $_POST['next_issue'] : '' ;
 
     if($title && $published && $writer && $artist && $description && $image) {
 
@@ -44,7 +49,7 @@ $pageTitle = "ჭაბუკის კომიქსები | ადმი�
 
     <main>
         <div class="container-header">
-            <h2>კომიქსი #<?= $book['id'] ?></h2>
+            <h2>კომიქსი: <?= $book['title'] ?></h2>
         </div>
         <form action="" method="post">
             <div class="comic-container">

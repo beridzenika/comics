@@ -10,13 +10,22 @@ $userId = isset($_SESSION['userid']) && $_SESSION['userid'] ? $_SESSION['userid'
 //select
 if($id) {
     $select_query = $connection->query("SELECT * FROM books WHERE id = " . $id);
-    $book = $select_query->fetch_assoc();
-    if(!$book) {
+    $issue = $select_query->fetch_assoc();
+    if(!$issue) {
         die('Error 404');
     }
 } else {
     die('invalid id');
 }
+// select books
+    $limit = 5;
+    $similTitle = explode('#',$issue['title'])[0];
+    $query = $connection->query("SELECT * FROM books WHERE status = 1 AND title LIKE '%" . $similTitle . "%' AND title != '" . $issue['title'] . "' ORDER BY published ASC LIMIT ". $limit);
+    $books = $query->fetch_all(MYSQLI_ASSOC);
+// books num
+    $total = $connection->query("SELECT COUNT(*) AS cnt FROM books WHERE status = 1 AND title LIKE '%" . $similTitle . "%'");
+    $count = $total->fetch_assoc();
+    $booksNum = $count['cnt'] - 1;
 
 //rating
 if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
@@ -40,17 +49,17 @@ if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
             die('Error');
         }
 
-        $bookRates = $connection->query('SELECT rate FROM rates WHERE book = '.$id);
-        $bookRates = $bookRates->fetch_all(MYSQLI_ASSOC);
-        $bookRates = array_column($bookRates, 'rate');
-        $stars = array_sum($bookRates);
-        $peopleRating = count($bookRates);
+        $issueRates = $connection->query('SELECT rate FROM rates WHERE book = '.$id);
+        $issueRates = $issueRates->fetch_all(MYSQLI_ASSOC);
+        $issueRates = array_column($issueRates, 'rate');
+        $stars = array_sum($issueRates);
+        $peopleRating = count($issueRates);
 
 
-        $bookQuery = $connection->prepare("UPDATE books SET stars = ?, peopleRating = ? WHERE id = ?");
-        $bookQuery->bind_param('iis', $stars, $peopleRating, $id);
+        $issueQuery = $connection->prepare("UPDATE books SET stars = ?, peopleRating = ? WHERE id = ?");
+        $issueQuery->bind_param('iis', $stars, $peopleRating, $id);
 
-        if($bookQuery->execute()) {
+        if($issueQuery->execute()) {
             header('Location: ?action=issue&id=' . $id);
         } else {
             print_r($connection->error);
@@ -60,14 +69,14 @@ if (isset($_SESSION['logedin']) && $_SESSION['logedin']) {
 }
 
 //average stars
-if($book['stars'] != 0 && $book['peopleRating'] != 0) {
-    $ratedStars = $book['stars'] / $book['peopleRating'];
+if($issue['stars'] != 0 && $issue['peopleRating'] != 0) {
+    $ratedStars = $issue['stars'] / $issue['peopleRating'];
 } else {
-    $ratedStars = $book['stars'];
+    $ratedStars = $issue['stars'];
 }
 
 //head
-$pageTitle = $book['title'] . " | კომიქსის სერია";
+$pageTitle = $issue['title'] . " | კომიქსის სერია";
 ?>
 
 <?php include('components/head.php')?>
@@ -75,14 +84,14 @@ $pageTitle = $book['title'] . " | კომიქსის სერია";
 
     <div class="issue-nav">
         <div class="issues">
-            <?php if ($book['prev_issue'] > 0) :?>
-                <a class="left_arrow" href="?action=issue&id=<?=$book['prev_issue']?>">
+            <?php if ($issue['prev_issue'] > 0) :?>
+                <a class="left_arrow" href="?action=issue&id=<?=$issue['prev_issue']?>">
                     <?php include 'assets/icons/arrow.svg'?>
                     <span class="text">წინა</span>
                 </a>
             <?php endif?>
-            <?php if ($book['next_issue'] > 0) :?>
-                <a class="right_arrow" href="?action=issue&id=<?=$book['next_issue']?>">
+            <?php if ($issue['next_issue'] > 0) :?>
+                <a class="right_arrow" href="?action=issue&id=<?=$issue['next_issue']?>">
                     <span class="text">შემდეგი</span>
                     <?php include 'assets/icons/arrow.svg'?>
                 </a>
@@ -96,7 +105,7 @@ $pageTitle = $book['title'] . " | კომიქსის სერია";
         <section class="issue-holder">
             <div class="issue-info">
                 <div class="left-section">
-                    <img src="<?=$book['image']?>" alt="">
+                    <img src="<?=$issue['image']?>" alt="">
                     <form id="rateform" method="post">
                         <input type="hidden" name="starsNum" id="rate-star">
                         <div class="rating">
@@ -107,28 +116,40 @@ $pageTitle = $book['title'] . " | კომიქსის სერია";
                     </form>
                 </div>
                 <div class="right-section">
-                    <h1><?=$book['title']?></h1>
+                    <h1><?=$issue['title']?></h1>
                     <div class="info">
                         <strong>გამოცემის თარიღი:</strong>
-                        <span><?=date('F j, Y', strtotime($book['published']))?></span>
+                        <span><?=date('F j, Y', strtotime($issue['published']))?></span>
                     </div>
                     <div class="info">
                         <strong>მწერალი:</strong>
-                        <span><?=$book['writer']?></span>
+                        <span><?=$issue['writer']?></span>
                     </div>
                     <div class="info">
                         <strong>მხატვარი:</strong>
-                        <span><?=$book['artist']?></span>
+                        <span><?=$issue['artist']?></span>
                     </div>
                     <div class="info">
-                        <p><?=$book['description']?></p>
+                        <p><?=$issue['description']?></p>
                     </div>
                     <div class="issue-link">
-                        <a href="?action=comic&id=<?= $book['id'] ?>">წაიკითხე</a>
+                        <a href="?action=comic&id=<?= $issue['id'] ?>">წაიკითხე</a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="comic-section">
+            <h2>ამავე სერიიდან</h2>
+            <?php include('components/comic_container.php')?>
+            <?php
+                if ($booksNum > $limit):
+            ?>
+            <button id="more-btn" onclick="loadMore('')">მეტის ნახვა</button>
+            <?php
+                endif; 
+            ?>
+        </div>
     </main>
 
     <?php include('components/footer.php')?>

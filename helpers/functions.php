@@ -17,19 +17,41 @@ function actionData($connection) {
 //search
 function search($attach) {
     if(isset($_GET['search']) && $_GET['search']) {
-        $titleLike = $attach . " title LIKE '%" . $_GET['search'] . "%'";
+        $searchTerms = explode(" ", $_GET['search']);
+        $conditions = array();
+        $conditions[] = "title LIKE '%" . $_GET['search'] . "%'";
+        $conditions[] = "writer LIKE '%" . $_GET['search'] . "%'";
+        $conditions[] = "artist LIKE '%" . $_GET['search'] . "%'";
+        $titleLike = $attach . " (" . implode(" OR ", $conditions) . ")";
+    } else {
+        $titleLike = '';
+    }
+    return $titleLike;
+
+    if(isset($_GET['search']) && $_GET['search']) {
+        $searchTerms = explode(" ", $_GET['search']);
+        $cons = array();
+        foreach ($searchTerms as $term) {
+            $cons[] = "title LIKE '%" . $term . "%'";
+            $cons[] = "title LIKE '%" . $term . "%'";
+            $cons[] = "title LIKE '%" . $term . "%'";
+        }
+        $titleLike = $attach . " (" . implode(" OR ", $cons) . ")";
     } else {
         $titleLike = '';
     }
     return $titleLike;
 }
+
 //search relocate
 function searchRelocate ($count, $user, $id) {
-    if (isset($count['cnt']) && $count['cnt'] == 1) {
-        if (isset($user) && $user == 'admin') {
-            header('Location: index.php?user=admin&page=comics&action=edit&id='.$id);
-        } else {
-            header('Location: index.php?action=issue&id='.$id);
+    if (isset($_GET['search']) && isset($_GET['search'])) {
+        if (isset($count['cnt']) && $count['cnt'] == 1) {
+            if (isset($user) && $user == 'admin') {
+                header('Location: index.php?user=admin&page=comics&action=edit&id='.$id);
+            } else {
+                headers_sent() ?: header('Location: index.php?action=issue&id=' . $id);
+            }
         }
     }
 }

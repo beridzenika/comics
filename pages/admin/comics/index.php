@@ -6,7 +6,7 @@ session_start();
 isAdmin();
 
 //paging
-$limit = 5;
+$limit = 10;
 $offset = '';
 $pg = isset($_GET['pg']) && $_GET['pg'] ? $_GET['pg'] : '';
 if($pg > 1) {
@@ -44,13 +44,16 @@ if(isset($_POST['action']) && $_POST['action'] == 'status') {
 }
 
 //select
-$query = $connection->query("SELECT * FROM books " . search('WHERE') . " ORDER BY books.id DESC LIMIT ". $limit ."". $offset);
+$query = $connection->query("SELECT id, image, title, status FROM books " . search('WHERE') . " ORDER BY books.id DESC LIMIT ". $limit ."". $offset);
 $books = $query->fetch_all(MYSQLI_ASSOC);
 
 //search relocate
 foreach ($books as $book) {
     $user = isset($_GET['user']) ? $_GET['user'] : '';
     searchRelocate($count, $user, $book['id']);
+}
+if ($count['cnt'] == 0) {
+    header('Location: index.php?user=admin&page=comics&action=form');
 }
 
 $pageTitle = "ჭაბუკის კომიქსები | ადმინი";

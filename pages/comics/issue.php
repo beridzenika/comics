@@ -86,14 +86,14 @@ $pageTitle = $issue['title'] . " | კომიქსის სერია";
         <div class="issues">
             <?php if ($issue['prev_issue'] > 0) :?>
                 <a class="left_arrow" href="?action=issue&id=<?=$issue['prev_issue']?>">
-                    <?php include 'assets/icons/arrow.svg'?>
+<!--                    --><?php //include 'assets/icons/arrow.svg'?>
                     <span class="text">წინა</span>
                 </a>
             <?php endif?>
             <?php if ($issue['next_issue'] > 0) :?>
                 <a class="right_arrow" href="?action=issue&id=<?=$issue['next_issue']?>">
                     <span class="text">შემდეგი</span>
-                    <?php include 'assets/icons/arrow.svg'?>
+<!--                    --><?php //include 'assets/icons/arrow.svg'?>
                 </a>
             <?php endif?>
         </div>

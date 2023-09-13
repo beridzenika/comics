@@ -11,19 +11,37 @@ if (logout){
 }
 
 //see more btn
-// function loadMore(sectionId) {
-//     var section = document.getElementById('comic-container-'+sectionId);
-//     var moreBtn = document.getElementById('more-btn-'+sectionId);
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('GET', 'test.php', true);
-//     xhr.onload = function () {
-//         if (this.status == 200) {
-//             moreBtn.remove();
-//             section.innerHTML += this.responseText;
-//         }
-//     }
-//     xhr.send();
-// }
+function loadMore(sectionId) {
+    var section = document.getElementById('comic-container-'+sectionId);
+    var moreBtn = document.getElementById('more-btn-'+sectionId);
+    var page = 1;
+    const xhr = new XMLHttpRequest();
+    var url = 'ajax/load_comics.php';
+    var params = { page: page, section_id: sectionId};
+    params = formatParams(params);
+    console.log(url+params);
+    xhr.open("GET", url+params, true);
+    xhr.onreadystatechange = function()
+    {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            let moreComics = xhr.responseText;
+            section.innerHTML += moreComics;
+            document.getElementById('more-btn-'+sectionId).remove();
+            // document.innerHTML += this.responseText;
+        }
+    }
+    xhr.send(null);
+}
+
+
+function formatParams( params ){
+    return "?" + Object
+        .keys(params)
+        .map(function(key){
+            return key+"="+encodeURIComponent(params[key])
+        })
+        .join("&")
+}
 
 //rate star ajax
 // function ajaxRate (starsNum) {

@@ -77,3 +77,11 @@ function otherIssues($connection, $title, $sign, $orderBy, &$issueName) {
     $issue = $query->fetch_assoc();
     $issueName = isset($issue) && $issue ? $issue['id'] : 0;
 }
+
+function getComics($ID, $Comics)
+{
+    $item = array_filter($Comics, function ($item) use ($ID) {
+        return $item['id'] == $ID;
+    });
+    return $item ? reset( $item) : [];
+}

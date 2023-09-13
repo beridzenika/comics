@@ -1,6 +1,7 @@
 <?php 
 include('helpers/db_connection.php');
 include('helpers/functions.php');
+include ('config.php');
 
 //paging
 $limit = 5;
@@ -10,12 +11,8 @@ $searchDone = false;
 $selected = false;
 
 //section
-$comicSections = [
-    ['title' => 'უახლესი', 'sortBy' => 'published DESC'],
-    ['title' => 'ყველაზე ნახვადი', 'sortBy' => 'peopleRating DESC', 'condition' => 'peopleRating > 0'],
-    ['title' => 'უფასო კომიქსები', 'sortBy' => 'price DESC', 'condition' => 'price = 0'],
-];
-$btnId = 0;
+$comicSections = $Config['comics_sections'];
+$sectionId = 1;
 //head
 $pageTitle = "ჭაბუკის კომიქსები";
 ?>
@@ -24,7 +21,7 @@ $pageTitle = "ჭაბუკის კომიქსები";
     <?php include('components/header.php')?>
     <main>
         <?php foreach($comicSections as $section): ?>
-        <div class="comic-section" id="comic-container-<?=$btnId?>">
+        <div class="comic-section" id="comic-container-<?=$sectionId?>">
             <?php
             //select
             $sqlCon = condition($section) . " ORDER BY ". $section['sortBy'];
@@ -54,9 +51,9 @@ $pageTitle = "ჭაბუკის კომიქსები";
                 include('components/comic_container.php');
                 if ($booksNum > $limit):
             ?>
-                <button id="more-btn-<?=$btnId?>" onclick="loadMore(<?=$btnId?>)">მეტის ნახვა</button>
+                <button id="more-btn-<?=$sectionId?>" onclick="loadMore(<?=$sectionId?>)">მეტის ნახვა</button>
             <?php
-                $btnId++;
+                $sectionId++;
                 endif;
             } elseif (!$selected) {
             ?>

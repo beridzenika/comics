@@ -1,3 +1,3 @@
-<script src="<?= $scriptLink ?>"></script>
+<script src="<?= $scriptLink ?>" type="application/javascript"></script>
 </body>
 </html>

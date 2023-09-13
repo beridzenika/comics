@@ -50,7 +50,7 @@ if(isset($_GET['user']) && $_GET['user']) {
                 <a href="?<?= $user === 'admin/' ? "user=admin&" : "" ?>page=<?= $link['link'] ?>"><?=$link['title']?></a>
             </li>
         <?php endforeach ?>
-        <?php if ($user == 'admin/') :?>
+        <?php if ($user == 'admin') :?>
             <li class="<?= $page == 'menu' ? 'active' : ''  ?>">
                 <a href="?user=admin&page=menu">მენიუ</a>
             </li>

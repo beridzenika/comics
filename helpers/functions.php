@@ -55,6 +55,7 @@ function searchRelocate ($count, $user, $id) {
         }
     }
 }
+
 //condition
 function condition($section) {
     if(isset($section['condition']) && $section['condition']) {
@@ -64,12 +65,14 @@ function condition($section) {
     }
     return $condition;
 }
+
 //logged admin/guest
 function isAdmin() {
     if( !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
         header('location: index.php');
     }
 }
+
 //prev/next issue generator
 function otherIssues($connection, $title, $sign, $orderBy, &$issueName) {
     $similTitle = explode('#',$title)[0];

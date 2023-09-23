@@ -13,26 +13,30 @@ if (logout){
 //see more btn
 function loadMore(sectionId) {
     var section = document.getElementById('comic-container-'+sectionId);
-    var moreBtn = document.getElementById('more-btn-'+sectionId);
-    var page = 1;
+    var btnHolder = document.getElementById('load-btn-holder-'+sectionId);
+    var page = parseInt(btnHolder.querySelector('#load-page').value);
+    var allBooksNum = parseInt(btnHolder.querySelector('#books-num').value);
+    var limit = parseInt(btnHolder.querySelector('#limit').value);
+    var curBooksNum = (page+1)*limit;
     const xhr = new XMLHttpRequest();
     var url = 'ajax/load_comics.php';
     var params = { page: page, section_id: sectionId};
     params = formatParams(params);
-    console.log(url+params);
     xhr.open("GET", url+params, true);
     xhr.onreadystatechange = function()
     {
         if(xhr.readyState == 4 && xhr.status == 200) {
             let moreComics = xhr.responseText;
             section.innerHTML += moreComics;
-            document.getElementById('more-btn-'+sectionId).remove();
-            // document.innerHTML += this.responseText;
+            if (allBooksNum >= curBooksNum) {
+                document.getElementById('load-page').value = page+1;
+            } else {
+                document.getElementById('load-btn-'+sectionId).remove();
+            }
         }
     }
     xhr.send(null);
 }
-
 
 function formatParams( params ){
     return "?" + Object
@@ -43,17 +47,6 @@ function formatParams( params ){
         .join("&")
 }
 
-//rate star ajax
-// function ajaxRate (starsNum) {
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('GET', 'ajax/star_rate.php?starsNum='+starsNum, true);
-//     xhr.onload = function () {
-//         if (this.status == 200) {
-//             document.innerHTML += this.responseText;
-//         }
-//     }
-//     xhr.send();
-// }
 
 
 //rate star glow

@@ -21,7 +21,7 @@ $pageTitle = "ჭაბუკის კომიქსები";
     <?php include('components/header.php')?>
     <main>
         <?php foreach($comicSections as $section): ?>
-        <div class="comic-section" id="comic-container-<?=$sectionId?>">
+        <div class="comic-section">
             <?php
             //select
             $sqlCon = condition($section) . " ORDER BY ". $section['sortBy'];
@@ -32,7 +32,6 @@ $pageTitle = "ჭაბუკის კომიქსები";
             $total = $connection->query("SELECT COUNT(*) AS cnt FROM books WHERE status = 1 ". search('AND') . " " . $sqlCon);
             $count = $total->fetch_assoc();
             $booksNum = $count['cnt'];
-
             //search relocate
             if (!$searchDone) {
                 foreach ($books as $book) {
@@ -46,12 +45,18 @@ $pageTitle = "ჭაბუკის კომიქსები";
                 $selected = true;
             ?>
             <h2><?=$section['title']?></h2>
-            
-            <?php 
+            <div class="comic-container" id="comic-container-<?=$sectionId?>">
+                <?php 
                 include('components/comic_container.php');
                 if ($booksNum > $limit):
-            ?>
-                <button id="more-btn-<?=$sectionId?>" onclick="loadMore(<?=$sectionId?>)">მეტის ნახვა</button>
+                ?>
+            </div>
+            <div id="load-btn-holder-<?=$sectionId?>">
+                <input type="hidden" id="load-page" value="1">
+                <input type="hidden" id="books-num" value="<?=$booksNum?>">
+                <input type="hidden" id="limit" value="<?=$limit?>">
+                <button id="load-btn-<?=$sectionId?>" onclick="loadMore(<?=$sectionId?>)">მეტის ნახვა</button>
+            </div>
             <?php
                 $sectionId++;
                 endif;

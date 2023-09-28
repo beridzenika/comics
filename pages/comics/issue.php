@@ -17,12 +17,13 @@ if($id) {
 } else {
     die('invalid id');
 }
-// select books
+// select container books
+    $sectionId = 1;
     $limit = 5;
     $similTitle = explode('#',$issue['title'])[0];
     $query = $connection->query("SELECT * FROM books WHERE status = 1 AND title LIKE '%" . $similTitle . "%' AND title != '" . $issue['title'] . "' ORDER BY published ASC LIMIT ". $limit);
     $books = $query->fetch_all(MYSQLI_ASSOC);
-// books num
+// container books num
     $total = $connection->query("SELECT COUNT(*) AS cnt FROM books WHERE status = 1 AND title LIKE '%" . $similTitle . "%'");
     $count = $total->fetch_assoc();
     $booksNum = $count['cnt'] - 1;
@@ -141,13 +142,19 @@ $pageTitle = $issue['title'] . " | კომიქსის სერია";
 
         <div class="comic-section">
             <h2>ამავე სერიიდან</h2>
-            <div class="comic-container">
-                <?php include('components/comic_container.php')?>
-            </div>
-            <?php
+            <div class="comic-container" id="comic-container-<?=$sectionId?>">
+                <?php 
+                include('components/comic_container.php');
                 if ($booksNum > $limit):
-            ?>
-            <button id="more-btn" onclick="loadMore('')">მეტის ნახვა</button>
+                ?>
+            </div>
+            <div id="load-btn-holder-<?=$sectionId?>">
+                <input type="hidden" id="load-page" value="1">
+                <input type="hidden" id="books-num" value="<?=$booksNum?>">
+                <input type="hidden" id="limit" value="<?=$limit?>">
+                <input type="hidden" id="search" value="<?=$issue['title']?>">
+                <button id="load-btn-<?=$sectionId?>" onclick="loadMore(<?=$sectionId?>, 'issue')">მეტის ნახვა</button>
+            </div>
             <?php
                 endif; 
             ?>

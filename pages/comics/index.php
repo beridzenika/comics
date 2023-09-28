@@ -7,7 +7,7 @@ include ('config.php');
 $limit = 5;
 
 //boolean
-$searchDone = false;
+$searchRelocateDone = false;
 $selected = false;
 
 //section
@@ -33,13 +33,13 @@ $pageTitle = "ჭაბუკის კომიქსები";
             $count = $total->fetch_assoc();
             $booksNum = $count['cnt'];
             //search relocate
-            if (!$searchDone) {
+            if (!$searchRelocateDone) {
                 foreach ($books as $book) {
                     $user = isset($_GET['user']) ? $_GET['user'] : '';
                     searchRelocate($count, $user, $book['id']);
                 }
             }
-            $searchDone = true;
+            $searchRelocateDone = true;
 
             if($booksNum > 0) {
                 $selected = true;
@@ -55,7 +55,8 @@ $pageTitle = "ჭაბუკის კომიქსები";
                 <input type="hidden" id="load-page" value="1">
                 <input type="hidden" id="books-num" value="<?=$booksNum?>">
                 <input type="hidden" id="limit" value="<?=$limit?>">
-                <button id="load-btn-<?=$sectionId?>" onclick="loadMore(<?=$sectionId?>)">მეტის ნახვა</button>
+                <input type="hidden" id="search" value="<?=isset($_GET['search']) ? $_GET['search'] : ''?>">
+                <button id="load-btn-<?=$sectionId?>" onclick="loadMore(<?=$sectionId?>, 'index')">მეტის ნახვა</button>
             </div>
             <?php
                 $sectionId++;

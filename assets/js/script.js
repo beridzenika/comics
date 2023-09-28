@@ -11,17 +11,20 @@ if (logout){
 }
 
 //see more btn
-function loadMore(sectionId) {
+function loadMore(sectionId, ajaxPageurl) {
     var section = document.getElementById('comic-container-'+sectionId);
     var btnHolder = document.getElementById('load-btn-holder-'+sectionId);
+
     var page = parseInt(btnHolder.querySelector('#load-page').value);
     var allBooksNum = parseInt(btnHolder.querySelector('#books-num').value);
     var limit = parseInt(btnHolder.querySelector('#limit').value);
+    var search = btnHolder.querySelector('#search').value;
     var curBooksNum = (page+1)*limit;
-    const xhr = new XMLHttpRequest();
-    var url = 'ajax/load_comics.php';
-    var params = { page: page, section_id: sectionId};
+    
+    var url = 'ajax/load_'+ajaxPageurl+'_comics.php';
+    var params = { page: page, section_id: sectionId, search: search};
     params = formatParams(params);
+    const xhr = new XMLHttpRequest();
     xhr.open("GET", url+params, true);
     xhr.onreadystatechange = function()
     {

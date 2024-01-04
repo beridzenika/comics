@@ -28,18 +28,18 @@ $pageTitle = $book['title'];
         <a href="?action=issue&id=<?= $id ?>"><?php include 'assets/icons/arrow.svg'?></a>
             <h3><?=$book['title']?></h3>
         </header>
-        <div id="page_image_container" class="page">
+        <div id="page_image_container" class="page" ondblclick="zoom()">
             <!--image-->
         </div>
         <footer id="footer">
             <nav>
                 <span id="left_arrow" class="left_arrow"><?php include 'assets/icons/arrow.svg'?></span>
-                <ul>
+                <ul onclick="zoom()">
                     <!-- <li class="icon btn-panel">
                         panel
                     </li> -->
-                    <li class="btn-zoom zoom-in"><?php include 'assets/icons/zoom-in-icon.svg'?></li>
-                    <li class="btn-zoom zoom-out"><?php include 'assets/icons/zoom-out-icon.svg'?></li>
+                    <li class="zoom-in" ><?php include 'assets/icons/zoom-in-icon.svg'?></li>
+                    <li class="zoom-out" ><?php include 'assets/icons/zoom-out-icon.svg'?></li>
                     <!-- <li class="icon btn-screen">
                         screen
                     </li> -->

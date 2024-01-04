@@ -109,16 +109,50 @@ function getImage(image)
 {
     return `<img src="${image}" alt="">`;
 }
-rightArrow.addEventListener("click", function () {
+
+//changeing pages
+
+function nextPage () {
     pn = (pn != pageLength) ? pn + 1 : 0;
-    
     renderPage();
-});
-leftArrow.addEventListener("click", function () {
+}
+function prevPage () {
     pn = (pn != 0) ? pn - 1 : 0;
-    
     renderPage();
-});
+}
+rightArrow.addEventListener("click", nextPage);
+leftArrow.addEventListener("click", prevPage);
+
+document.addEventListener('keydown', function (event) {
+    if (event.code === "ArrowRight"){
+        nextPage();
+    } else if (event.code === "ArrowLeft"){
+        prevPage();
+    }
+})
+
+//zoom in/out
+
+    let zoomIconIn = document.querySelector('.zoom-in');
+    let zoomIconOut = document.querySelector('.zoom-out');
+
+    function zoom() {
+        if (pageImage.classList.contains('zoomed')) {
+            pageImage.classList.remove('zoomed');
+            if (zoomIconOut.style.display = 'block') {
+                zoomIconOut.style.display = 'none';
+                zoomIconIn.style.display = 'block';
+            }
+        }
+        else{
+            pageImage.classList.add('zoomed');
+            if (zoomIconIn.style.display = 'block') {
+                zoomIconIn.style.display = 'none';
+                zoomIconOut.style.display = 'block';
+            }
+        }
+    }
+
 
 // header/footer show/hiding
 let page = document.getElementById('comic-page');
@@ -141,23 +175,3 @@ function showHeaderFooter() {
 page.addEventListener('mousemove', showHeaderFooter);
 page.addEventListener('click', showHeaderFooter);
 
-//zoom in/out
-
-let zoomIcons = document.querySelectorAll('.btn-zoom');
-
-for (let i = 0; i < zoomIcons.length; i++) {
-    zoomIcons[i].addEventListener('click', function() {
-        let zoomInIcon = document.querySelector('.btn-zoom.zoom-in');
-        let zoomOutIcon = document.querySelector('.btn-zoom.zoom-out');
-
-        if (this.classList.contains('zoom-in')) {
-            zoomInIcon.style.display = 'none';
-            zoomOutIcon.style.display = 'block';
-            pageImage.classList.add("zoomed");
-        } else {
-            zoomInIcon.style.display = 'block';
-            zoomOutIcon.style.display = 'none';
-            pageImage.classList.remove("zoomed");
-        }
-    });
-}

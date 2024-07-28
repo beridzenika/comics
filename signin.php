@@ -1,3 +1,4 @@
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 <?php
 session_start();
 
@@ -16,16 +17,24 @@ if(isset($_POST['action']) && $_POST['action'] == 'registration') {
     $mailQuery = $connection->query("SELECT * FROM users WHERE email = '". $email ."'");
     $mailExists = $mailQuery->fetch_assoc();
 
+    // $captcha = $_POST['g-recaptcha-response'];
+    // $secretKey = "YOUR_SECRET_KEY";
+    // $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha");
+    // $responseKeys = json_decode($response, true);
+
     if($username && $email && $password && $repeat_password) {
         if(!$mailExists) {
             if($password == $repeat_password) {
                 $password = password_hash($password, PASSWORD_DEFAULT);
-    
-                $query = $connection->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-                $query->bind_param('sss', $username, $email, $password);
-                if($query->execute()) {
-                    header('location: index.php');
-                }
+                // if (intval($responseKeys["success"]) == 1) {
+                    $query = $connection->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+                    $query->bind_param('sss', $username, $email, $password);
+                    if($query->execute()) {
+                        header('location: index.php');
+                    }
+                // } else {
+                //     $error = 'დაადასტურეთ რომ რობოტი არ ხართ';
+                // }
             } else {
                 $error = 'პაროლები არ ემთხვევა';
             }
@@ -63,6 +72,9 @@ $styleLink = 'assets/css/style.css';
                     <label for="">გაიმეორეთ პაროლი</label>
                     <input type="password" name="repeat_password">
                 </div>
+                <!-- <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LcGvhYqAAAAALesKBmDNU3M2WZASLeWfbYe8sUl"></div>
+                </div> -->
                 <div class="form-group-btn">
                     <input type="hidden" name="action" value="registration">
                     <button class="btn">რეგისტრაცია</button>

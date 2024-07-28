@@ -6,6 +6,7 @@
 
 body {
   font-family: "Noto Sans Georgian", sans-serif;
+  background-image: url(https://wallpapercave.com/wp/wp8793793.jpg);
 }
 body .logo {
   font-size: 22;
@@ -130,12 +131,14 @@ body main .table-container {
   border-radius: 15px;
   box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
   width: 100%;
+  background-color: #fff;
 }
 body main .comic-container, body main .page-container {
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
   width: 100%;
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
 }

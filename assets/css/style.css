@@ -6,6 +6,7 @@
 
 body {
   font-family: "Noto Sans Georgian", sans-serif;
+  background-image: url(https://wallpapercave.com/wp/wp8793793.jpg);
 }
 body .checked {
   color: #F23005 !important;
@@ -117,6 +118,7 @@ body .issue-nav .issues {
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  padding-left: 5%;
 }
 body .issue-nav .issues a {
   display: flex;
@@ -177,7 +179,8 @@ body main .comic-container .comic-box .text {
   padding: 5px 0px;
 }
 body main .comic-container .comic-box .text :hover {
-  color: #00D4E3;
+  color: #005157;
+  text-shadow: 0 0 4px #fff;
 }
 body main .comic-container .comic-box .text a {
   text-decoration: none;
@@ -190,6 +193,7 @@ body main button {
   border: none;
   padding: 10px 20px;
   background-color: #F23005;
+  box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
@@ -203,9 +207,13 @@ body main .issue-holder {
   margin: 30px 20px;
 }
 body main .issue-holder .issue-info {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.5882352941);
   display: flex;
   align-items: center;
   gap: 50px;
+  padding-right: 50px;
 }
 body main .issue-holder .issue-info .left-section {
   max-width: 350px;
@@ -213,7 +221,6 @@ body main .issue-holder .issue-info .left-section {
 body main .issue-holder .issue-info .left-section img {
   height: 100%;
   width: 100%;
-  box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.5882352941);
 }
 body main .issue-holder .issue-info .left-section .rating {
   cursor: pointer;
@@ -244,6 +251,7 @@ body main .issue-holder .issue-link a {
   border: none;
   padding: 10px 20px;
   background-color: #00D4E3;
+  box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;
@@ -337,7 +345,8 @@ body .login-contianer .content {
   margin: 80px auto;
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
+  box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.5882352941);
+  background-color: #fff;
 }
 body .login-contianer .content .form-group, body .login-contianer .content .form-group-btn, body .login-contianer .content h2 {
   margin: 10px;
@@ -365,6 +374,7 @@ body .login-contianer .content a, body .login-contianer .content button {
   border: none;
   padding: 10px 20px;
   background-color: #00D4E3;
+  box-shadow: 0px 0px 18px 0px rgba(227, 227, 227, 0.7490196078);
   border-radius: 5px;
   color: white;
   font-family: "Noto Sans Georgian", sans-serif;

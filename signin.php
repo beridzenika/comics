@@ -77,8 +77,8 @@ $styleLink = 'assets/css/style.css';
                 </div> -->
                 <div class="form-group-btn">
                     <input type="hidden" name="action" value="registration">
-                    <button class="btn">რეგისტრაცია</button>
                     <a class="signin-btn" href="login.php">შემოსვლა</a>
+                    <button class="btn">რეგისტრაცია</button>
                 </div>
                 <div class="error">
                     <?php 

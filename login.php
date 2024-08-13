@@ -18,10 +18,24 @@ if(isset($_POST['action']) && $_POST['action'] == 'login') {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['userid'] = $user['id'];
                 $_SESSION['logedin'] = true;
+                
+                $to = $email;
+                $subject = 'Welcome to Our Website!';
+                $message = 'Thank you for registering on our website. We hope you enjoy your stay!';
+                $headers = 'From: no-reply@yourwebsite.com' . "\r\n" .
+                           'Reply-To: no-reply@yourwebsite.com' . "\r\n" .
+                           'X-Mailer: PHP/' . phpversion();
+
+                if (mail($to, $subject, $message, $headers)) {
+                    echo 'Email sent successfully.';
+                } else {
+                    echo 'Failed to send email.';
+                }
 
                 if ($user['is_admin']) {
                     $_SESSION['is_admin'] = 1;
-                    header('location: index.php?user=admin');
+                    // header('location: index.php?user=admin');
+
                 } else {
                     header('location: index.php?');
                 }
@@ -56,8 +70,8 @@ $styleLink = 'assets/css/style.css';
                 </div>
                 <div class="form-group-btn">
                     <input type="hidden" name="action" value="login">
-                    <button class="btn">შემოსვლა</button>
                     <a class="signin-btn" href="signin.php">რეგისტრაცია</a>
+                    <button class="btn">შემოსვლა</button>
                 </div>
                 <div class="error">
                     <?php 
